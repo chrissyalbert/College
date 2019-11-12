@@ -1,0 +1,97 @@
+.SearchDialog {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-image: url('./background_search_desktop.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 25rem;
+}
+
+.SearchDialog-sort-options ul {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2.22rem;
+  color: #ffffff;
+}
+
+.SearchDialog-sort-options li {
+  cursor: pointer;
+  width: 4.33rem;
+  border-bottom: 1px solid #fff;
+  padding: 0 2.58rem .33rem 2.58rem;
+  line-height: 1.13;
+  text-align: center;
+  font-weight: 600;
+  font-size: .83rem;
+  transition: color .25s;
+}
+
+.SearchDialog-sort-options li:hover {
+  color: #d4cfcf;
+}
+
+.SearchDialog-sort-options li.active,
+.SearchDialog-sort-options li.active:hover {
+  border-bottom: 1px solid #f0c36c;
+  color: #f0c36c;
+}
+
+.SearchDialog-fields {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2.88rem;
+}
+
+.SearchDialog-fields input {
+  width: 21rem;
+  padding: .66rem 1rem;
+  margin-right: 2.22rem;
+  border: 1px solid #fff;
+  border-radius: 4px;
+  font-size: .77rem;
+  font-weight: 500;
+}
+
+.SearchDialog-fields input:last-child {
+  margin-right: 0;
+}
+
+.SearchDialog-submit {
+  text-align: center;
+}
+
+.SearchDialog-submit a {
+  border-radius: 4px;
+  padding: .72rem 1.7rem;
+  background-color: #cca353;
+  color: #ffffff;
+  font-weight: 600;
+  transition: background-color .5s;
+}
+
+.SearchDialog-submit a:hover {
+  cursor: pointer;
+  background-color: #a7874b;
+}
+
+@media only screen and (max-width: 560px) {
+  .SearchDialog {
+    background-image: url('./background_search_mobile.jpg');
+  }
+
+  .SearchDialog-sort-options ul {
+    margin-left: 2rem;
+    margin-right: 2rem;
+  }
+
+  .SearchDialog-fields {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .SearchDialog-fields input {
+    margin-right: 0;
+    margin-bottom: .86rem;
+  }
+}
