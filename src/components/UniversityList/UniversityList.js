@@ -6,9 +6,9 @@ class UniversityList extends React.Component {
   render() {
     return (
       <div className="UniversityList">
-        <University />
-        <University />
-        <University />
+        {this.props.universities.map(university => {
+          return <University university={university} />;
+        })}
       </div>
     );
   }
