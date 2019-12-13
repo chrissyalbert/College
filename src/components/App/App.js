@@ -1,7 +1,11 @@
 import React from 'react';
 import './App.css';
+//import 'bootstrap/dist/css/bootstrap.min.css';
 import UniversityList from '../UniversityList/UniversityList';
+import Searchbox from '../Searchbox/searchbox';
 import SearchDialog from '../SearchDialog/SearchDialog';
+import { stateParams, regionParams, urbanParams} from '../SearchDialog/locationSearch';
+//import { schoolGetter } from '../../util/scorecard';
 
 const university = {
   unitid: 100636,
@@ -18,6 +22,20 @@ const university = {
 const universities = [university, university, university, university, university, university];
 
 class App extends React.Component {
+  /*
+  searchAPI(state, region, urban
+    //program, degree, location, size, type, sortBy
+    ) {
+    //console.log('Searching College Scorecard API for universities that meet your criteria.');
+    schoolGetter({
+  
+    });
+  }
+  */
+
+
+  // to be added later in render...<main>
+  // <UniversityList universities={this.state.universities} />
   render() {
     return (
       <div className="App">
@@ -25,8 +43,9 @@ class App extends React.Component {
           <h1>College Costs... What?</h1>
         </header>
         <main>
-          <SearchDialog />
-          <UniversityList universities={universities}/>
+          <Searchbox />
+          
+          
         </main>
       </div>
     );

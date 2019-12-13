@@ -1,11 +1,13 @@
 import React from 'react';
 import './SearchDialog.css';
+import Dropdown from 'react-bootstrap/Dropdown';
 
 class SearchDialog extends React.Component {
 constructor(props) {
   super(props);
   //this might need to be built out later into objects
   this.state = {
+    name: '',
     program: '',
     degree: '',
     location: '',
@@ -18,6 +20,8 @@ constructor(props) {
   this.handleProgramChange = this.handleProgramChange.bind(this);
   this.handleSizeChange = this.handleSizeChange.bind(this);
   this.handleTypeChange = this.handleTypeChange.bind(this);
+  this.handleSearch = this.handleSearch.bind(this);
+  this.handleNameChange = this.handleNameChange.bind(this);
   this.sortByOptions = {
     ///api/v1/college-university/ipeds/directory/{year}/
     'Tuition and Fees': 'TUITIONFEE_IN',
@@ -40,6 +44,12 @@ constructor(props) {
   handleSortByChange(sortByOption) {
     this.setState({
       sortBy: sortByOption,
+    });
+  }
+
+  handleNameChange(e) {
+    this.setState({
+      name: e.target.value
     });
   }
 
@@ -73,6 +83,11 @@ constructor(props) {
     });
   }
   
+  handleSearch(e) {
+    this.props.searchAPI(this.state.program, this.state.degree, this.state.location, this.state.size, this.state.type, this.state.sortBy);
+    e.preventDefault();
+  }
+
   renderSortByOptions() {
     return Object.keys(this.sortByOptions).map((sortByOption) => {
       let sortByOptionValue = this.sortByOptions[sortByOption];
@@ -96,7 +111,7 @@ constructor(props) {
           <input placeholder="What type of school do you want to attend?" onChange={this.handleSizeChange} />
         </div>
         <div className="SearchDialog-submit">
-          <a href=''>Let's Go</a>
+          <a onClick={this.handleSearch} >Let's Go</a>
         </div>
       </div>
     );
