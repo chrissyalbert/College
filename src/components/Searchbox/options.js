@@ -60,7 +60,16 @@
   {name: "Puerto Rico"},
   {name: "Virgin Islands"}
   ];
-
+const uOptions = [
+  {name:	"Large City"},	
+  {name:	"Mid-Size City"},		
+  {name:	"Urban Fringe of a Large City"},		
+  {name:	"Urban Fringe of a Mid-Size City"},		
+  {name:	"Large Town"},
+  {name:	"Small Town"},	
+  {name:	"Rural, Outside Metropolitan Area "},		
+  {name:	"Rural, Inside Metropolitan Area"}
+];
 export const regionOptions = rOptions.map((option) => ({
   label: option.name,
   value: rOptions.indexOf(option)
@@ -69,4 +78,9 @@ export const regionOptions = rOptions.map((option) => ({
 export const stateOptions = sOptions.map((option) => ({
   label: option.name,
   value: sOptions.indexOf(option)
+}));
+
+export const urbanOptions = uOptions.map((option) => ({
+  label: option.name,
+  value: uOptions.indexOf(option)
 }));
