@@ -12,16 +12,140 @@ let regionOptions = [
   "Outlying Areas (AS, FM, GU, MH, MP, PR, PW, VI)"
 ];
 
+let options = [
+  "Choose state(s) from the list below",
+  "Alabama",
+  "Alaska",
+  "Arizona", 
+  "Arkansas",
+  "California",
+  "Colorado",
+  "Connecticut",
+  "Delaware",
+  "District of Columbia",
+  "Florida",
+  "Georgia",
+  "Hawaii",
+  "Idaho",
+  "Illinois",
+  "Indiana",
+  "Iowa",
+  "Kansas",
+  "Kentucky",
+  "Louisiana",
+  "Maine",
+  "Maryland",
+  "Massachusetts",
+  "Michigan",
+  "Minnesota",
+  "Mississippi",
+  "Missouri",
+  "Montana",
+  "Nebraska",
+  "Nevada",
+  "New Hampshire",
+  "New Jersey",
+  "New Mexico",
+  "New York",
+  "North Carolina",
+  "North Dakota",
+  "Ohio",
+  "Oklahoma",
+  "Oregon",
+  "Pennsylvania",
+  "Rhode Island",
+  "South Carolina",
+  "South Dakota",
+  "Tennessee",
+  "Texas",
+  "Utah",
+  "Vermont",
+  "Virginia",
+  "Washington",
+  "West Virginia",
+  "Wisconsin",
+  "Wyoming",
+  "American Samoa",
+  "Federated States of Micronesia",
+  "Guam",
+  "Northern Mariana Islands",
+  "Palau",
+  "Puerto Rico",
+  "Virgin Islands"
+];
+
 let newArr = [];
-for (let i=0; i < regionOptions.length; i++) {
-  let obj = Object.assign({}, { [i]: regionOptions[i] });
+for (let i=0; i < options.length; i++) {
+  let obj = Object.assign({}, { name: options[i] });
   newArr.push(obj);
 }
-regionOptions = newArr;
-console.log(regionOptions);
+options = newArr;
+console.log(options);
+
+let sOptions =  [
+{name: "Choose state(s) from the list below"},
+{name: "Alabama"},
+{name: "Alaska"},
+{name: "Arizona"},
+{name: "Arkansas"},
+​{name: "California"},
+​{name: "Colorado"},
+{name: "Connecticut"},
+​{name: "Delaware"},
+​{name: "District of Columbia"},
+{name: "Florida"},
+{name: "Georgia"},
+{name: "Hawaii"},
+{name: "Idaho"},
+{name: "Illinois"},
+{name: "Indiana"},
+​{name: "Iowa"},
+​{name: "Kansas"},
+​{name: "Kentucky"},
+​{name: "Louisiana"},
+​{name: "Maine"},
+​{name: "Maryland"},
+​{name: "Massachusetts"},
+​{name: "Michigan"},
+​{name: "Minnesota"},
+​{name: "Mississippi"},
+​{name: "Missouri"},
+​{name: "Montana"},
+​{name: "Nebraska"},
+​{name: "Nevada"},
+​{name: "New Hampshire"},
+​{name: "New Jersey"},
+​{name: "New Mexico"},
+​{name: "New York"},
+​{name: "North Carolina"},
+​{name: "North Dakota"},
+​{name: "Ohio"},
+​{name: "Oklahoma"},
+​{name: "Oregon"},
+​{name: "Pennsylvania"},
+​{name: "Rhode Island"},
+​{name: "South Carolina"},
+​{name: "South Dakota"},
+​{name: "Tennessee"},
+​{name: "Texas"},
+​{name: "Utah"},
+{name: "Vermont"},
+{name: "Virginia"},
+{name: "Washington"},
+{name: "WestVirginia"},
+{name: "Wisconsin"},
+{name: "Wyoming"},
+{name: "American Samoa"},
+{name: "Federated States of Micronesia"},
+{name: "Guam"},
+{name: "Northern Mariana Islands"},
+{name: "Palau"},
+{name: "Puerto Rico"},
+{name: "Virgin Islands"}
+];
 
 /*
-const newObj = Object.assign({}, regionOptions);
+const newObj = .assign({}, regionOptions);
 const newArr = regionOptions.keys().map(function(key) {
   return { [key]: regionOptions[key] };
 });

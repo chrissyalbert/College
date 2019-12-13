@@ -3,9 +3,8 @@ import './searchbox.css';
 import CardDeck from 'react-bootstrap/CardDeck';
 import Card from 'react-bootstrap/Card';
 import Select from "react-dropdown-select";
-import { displayOptions } from "../Searchbox/options";
-import SearchRegion from "./searchRegion";
-
+import { stateOptions } from "./options";
+import { regionOptions } from "./options";
 
 class Searchbox extends React.Component {
   constructor(props) {
@@ -13,69 +12,12 @@ class Searchbox extends React.Component {
     this.state = {
       values: []
     }
-    this.setValues = this.setValues.bind(this);
-    //this.regionOptions = [{name: "U.S. Service Schools"}, {name: "New England (CT, ME, MA, NH, RI, VT)"}, {name: "Mid East (DE, CD, MD, NJ, NY, PA)"}, {name: "Great Lakes (IL, IN, MI, OH, WI)"}, {name: "Plains (IA, IKS, MN, MO, NE, ND, SD)"}, {name: "Southeast (AL, AR, FL, GA, KY, LA, MS, NC, SC, TN, VA, WV)"}, {name: "Southwest (AZ, NM, OK, TX)"}, {name: "Rocky Mountains (CO, ID, MT, UT, WY)"}, {name: "Far West (AK, CA, HI, NV, OR, WA)"}, {name: "Outlying Areas (AS, FM, GU, MH, MP, PR, PW, VI)"}];
-    this.stateOptions = [
-      // no index 0
-      "Alabama",
-      "Alaska",
-      "Arizona", 
-      "Arkansas",
-      "California",
-      "Colorado",
-      "Connecticut",
-      "Delaware",
-      "District of Columbia",
-      "Florida",
-      "Georgia",
-      "Hawaii",
-      "Idaho",
-      "Illinois",
-      "Indiana",
-      "Iowa",
-      "Kansas",
-      "Kentucky",
-      "Louisiana",
-      "Maine",
-      "Maryland",
-      "Massachusetts",
-      "Michigan",
-      "Minnesota",
-      "Mississippi",
-      "Missouri",
-      "Montana",
-      "Nebraska",
-      "Nevada",
-      "New Hampshire",
-      "New Jersey",
-      "New Mexico",
-      "New York",
-      "North Carolina",
-      "North Dakota",
-      "Ohio",
-      "Oklahoma",
-      "Oregon",
-      "Pennsylvania",
-      "Rhode Island",
-      "South Carolina",
-      "South Dakota",
-      "Tennessee",
-      "Texas",
-      "Utah",
-      "Vermont",
-      "Virginia",
-      "Washington",
-      "West Virginia",
-      "Wisconsin",
-      "Wyoming",
-      "American Samoa",
-      "Federated States of Micronesia",
-      "Guam",
-      "Northern Mariana Islands",
-      "Palau",
-      "Puerto Rico",
-      "Virgin Islands"
-    ];
+
+    this.setRegions = this.setRegions.bind(this);
+    this.setStates = this.setStates.bind(this);
+
+    //this.setValues = this.setValues.bind(this);
+    
     this.urbanOptions = [
       //no 0 index
       "Large City (a central city of a CMSA or MSA, with the city having a population greater than or equal to 250,000)",	
@@ -89,27 +31,57 @@ class Searchbox extends React.Component {
     ];
   }
 
+  setRegions(selected) {
+    let searchObjects = selected.map(obj => Object.assign({}, {"region_id": obj.value}));
+    this.setState( { 
+      selected,
+      searchObjects
+     });
+    console.log(searchObjects);
+
+  }
+
+  setStates(selected) {
+    let searchObjects = selected.map(obj => Object.assign({}, {"state_fips": obj.value}));
+    this.setState( { 
+      selected,
+      searchObjects
+     });
+    console.log(searchObjects);
+    
+  }
+/*
   setValues(values) {
     this.setState( {values});
     console.log(values);
     
   }
-  
+  */
   render() {
     return (
       <div className="Searchbox">
         <div className="SearchLocation">
         <CardDeck>
-          <SearchRegion />
-          <Card>
+          <Card className="SearchRegion">
+            <Card.Body>
+              <Card.Title>Region</Card.Title>
+              <Card.Text>
+        Which region of the U.S. would you like to study?
+              </Card.Text>
+              <Select multi options={regionOptions} onChange={(selected) => this.setRegions(selected)}/>
+            </Card.Body>
+          </Card>
+        
+          <Card className="SearchState">
             <Card.Body>
               <Card.Title>State</Card.Title>
               <Card.Text>
-        Which states would you like to study?
+        Which states of the U.S. would you like to study?
               </Card.Text>
-              <Select multi options={this.stateOptions} onChange={(values) => this.setValues(values)} />
+              <Select multi options={stateOptions} onChange={(values) => this.setStates(values)} />
             </Card.Body>
           </Card>
+
           <Card>
             <Card.Body>
               <Card.Title>City, Town, or Country</Card.Title>
@@ -119,7 +91,7 @@ class Searchbox extends React.Component {
               <Select multi options={this.urbanOptions} onChange={(values) => this.setValues(values)} />
             </Card.Body>
           </Card>
-</CardDeck>
+        </CardDeck>
         </div>
       </div>
     );

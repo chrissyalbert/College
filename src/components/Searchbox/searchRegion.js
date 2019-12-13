@@ -14,11 +14,11 @@ class SearchRegion extends React.Component {
       selected: [],
       searchObjects: []
      }
-    this.setSelected = this.setSelected.bind(this);
+    this.setRegions = this.setRegions.bind(this);
     
   }
 
-  setSelected(selected) {
+  setRegions(selected) {
     let searchObjects = selected.map(obj => Object.assign({}, {"region_id": obj.value}));
     //this.newArr(selected);
     this.setState( { 
@@ -26,14 +26,11 @@ class SearchRegion extends React.Component {
       searchObjects
      });
     console.log(searchObjects);
-    
   }
 
   render() {
     return (
-      <div className="SearchLocation">
         <div className="SearchRegion">
-        
           <Card>
             <Card.Body>
               <Card.Title>Region</Card.Title>
@@ -43,9 +40,7 @@ class SearchRegion extends React.Component {
               <Select multi options={regionOptions} onChange={(selected) => this.setSelected(selected)}/>
             </Card.Body>
           </Card>
-      
         </div>
-      </div>
     );
   }
 }
