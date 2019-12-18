@@ -2,7 +2,9 @@ import React from 'react';
 import './searchbox.css';
 import CardDeck from 'react-bootstrap/CardDeck';
 import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button'
 import Select from "react-dropdown-select";
+
 import { stateOptions } from "./options";
 import { regionOptions } from "./options";
 import { urbanOptions } from "./options";
@@ -11,43 +13,27 @@ class Searchbox extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      values: []
+      values: [],
+      searchObjects: []
     }
 
-    this.setRegions = this.setRegions.bind(this);
-    this.setStates = this.setStates.bind(this);
-    this.setUrban = this.setUrban.bind(this);
-
+    this.setSelected = this.setSelected.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
   }
 
-  setRegions(selected) {
-    let searchObjects = selected.map(obj => Object.assign({}, {"region_id": obj.value}));
+  setSelected(selected, property) {
+    let searchObjects = selected.map(obj => Object.assign({}, {[property]: obj.value}));
     this.setState( { 
-      selected,
+      
       searchObjects
      });
-    console.log(searchObjects);
-
+    //console.log(searchObjects);
   }
 
-  setStates(selected) {
-    let searchObjects = selected.map(obj => Object.assign({}, {"state_fips": obj.value}));
-    this.setState( { 
-      selected,
-      searchObjects
-     });
-    console.log(searchObjects);
-    
-  }
-
-  setUrban(selected) {
-    let searchObjects = selected.map(obj => Object.assign({}, {"degree_urbanization": obj.value}));
-    this.setState( { 
-      selected,
-      searchObjects
-     });
-    console.log(searchObjects);
-    
+  handleSearch(event) {
+    this.props.searchSchools(this.state.searchObjects);
+    console.log(this.state.searchObjects);
+    event.preventDefault();
   }
 
   render() {
@@ -61,7 +47,7 @@ class Searchbox extends React.Component {
               <Card.Text>
         Select one or more regions to search.
               </Card.Text>
-              <Select multi options={regionOptions} onChange={(selected) => this.setRegions(selected)}/>
+              <Select multi options={regionOptions} onChange={(selected) => this.setSelected(selected, "school.region_id")}/>
             </Card.Body>
           </Card>
         
@@ -71,20 +57,23 @@ class Searchbox extends React.Component {
               <Card.Text>
         Select one or more states to search.
               </Card.Text>
-              <Select multi options={stateOptions} onChange={(values) => this.setStates(values)} />
+              <Select multi options={stateOptions} onChange={selected => this.setSelected(selected, "school.state_fips")} />
             </Card.Body>
           </Card>
 
-          <Card>
+          <Card className="SearchUrban"> 
             <Card.Body>
               <Card.Title>City, Town, or Country</Card.Title>
               <Card.Text>
         Select the size of your ideal college town.
               </Card.Text>
-              <Select multi options={urbanOptions} onChange={(values) => this.setUrban(values)} />
+              <Select multi options={urbanOptions} onChange={(selected) => this.setSelected(selected, "school.degree_urbanization")} />
             </Card.Body>
           </Card>
         </CardDeck>
+        <Button className="SearchBox-submit" variant='dark' size="lg" block onClick={this.handleSearch}>
+          Search Schools
+        </Button>
         </div>
       </div>
     );

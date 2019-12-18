@@ -3,11 +3,12 @@ import './App.css';
 //import 'bootstrap/dist/css/bootstrap.min.css';
 import UniversityList from '../UniversityList/UniversityList';
 import Searchbox from '../Searchbox/searchbox';
-import SearchDialog from '../SearchDialog/SearchDialog';
-import { stateParams, regionParams, urbanParams} from '../SearchDialog/locationSearch';
+import { Scorecard } from '../../util/scorecard';
+//import SearchDialog from '../SearchDialog/SearchDialog';
+//import { stateParams, regionParams, urbanParams} from '../SearchDialog/locationSearch';
 //import { schoolGetter } from '../../util/scorecard';
 
-const university = {
+/*const university = {
   unitid: 100636,
   year: 2003,
   inst_name: "Community College of the Air Force",
@@ -18,24 +19,23 @@ const university = {
   phone_number: "3349536436",
   city: "Montgomery",
 };
-
-const universities = [university, university, university, university, university, university];
+*/
+//const universities = [university, university, university, university, university, university];
 
 class App extends React.Component {
-  /*
-  searchAPI(state, region, urban
-    //program, degree, location, size, type, sortBy
-    ) {
-    //console.log('Searching College Scorecard API for universities that meet your criteria.');
-    schoolGetter({
-  
-    });
+  constructor(props) {
+    super(props);
+    this.state = {
+      universities: []
+    }
+    this.searchSchools = this.searchSchools.bind(this);
   }
-  */
 
-
-  // to be added later in render...<main>
-  // <UniversityList universities={this.state.universities} />
+  searchSchools(...params) {
+    Scorecard.search(...params).then(universities => {this.setState({universities: universities})});
+    //console.log(Scorecard.search(...params));
+    }
+  
   render() {
     return (
       <div className="App">
@@ -43,13 +43,15 @@ class App extends React.Component {
           <h1>College Costs... What?</h1>
         </header>
         <main>
-          <Searchbox />
-          
+          <Searchbox searchSchools={universities => this.searchSchools(universities)}/>
+          <UniversityList universities={this.state.universities} />
           
         </main>
       </div>
     );
   }
-}
+} 
+  
+
  
 export default App;

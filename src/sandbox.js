@@ -1,3 +1,5 @@
+let str = `http://api.data.gov/ed/collegescorecard/v1/schools?api_key=fyVASqX6EDl4algr3QzzJLeTvjB1eN4ueTns4Lbr&school.region_id=1&_fields=id,school.name,school.school_url,school.city,school.state,school.price_calculator_url,latest.admissions.admission_rate.overall,latest.admissions.sat_scores.average.overall,latest.student.size,latest.cost.attendance.academic_year,latest.cost.attendance.program_year`
+
 
 let regionOptions = [
   "U.S. Service Schools",
@@ -164,3 +166,13 @@ console.log(newArr);
 */
 
 export default regionOptions;
+
+
+setSelected(selected, property) {
+  let searchObjects = selected.map(obj => Object.assign({}, {[property]: obj.value}));
+  this.setState( { 
+    selected,
+    searchObjects
+   });
+  console.log(searchObjects);
+}
