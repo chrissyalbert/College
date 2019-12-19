@@ -8,28 +8,27 @@ export const Scorecard = {
   search(...params) {
     let querystring = completeQueryString(params);
       //console.log(`${baseUrl}${querystring}`);
-      console.log(querystring);
+      //console.log(querystring);
       return axios.get(`${baseUrl}${querystring}`)
         .then(data => {
           console.log(data.data.results);
+          
           return data.data.results.map(university => ({
             id: university.id,
-            name: university.name,
-           // city: university.school.city,
-            //state: university.school.state,
-            //URL: university.school.school_url,
-            //size: university.latest.student.size,
-            //"School Price Calculator": university.school.price_calculator_url,
-           // "Average SAT score": university.latest.admissions.sat_scores.average.overall 
+            name: university["school.name"],
+            city: university["school.city"],
+            state: university["school.state"],
+            URL: university["school.school_url"],
+            size: university["latest.student.size"],
+            "School Price Calculator": university["school.price_calculator_url"],
+            "Average SAT score": university["latest.admissions.sat_scores.average.overall"],
+            "Admission Rate": university["latest.admissions.admission_rate.overall"],
+            costAcademic: university["latest.cost.attendance.academic_year"],
+            costProgram: university["latest.cost.attendance.program_year"]
           }));
           
         })
         .catch(error => console.error(error));
-      //let cost = university.latest.cost.attendance.academic_year ? university.latest.cost.attendance.academic_year : university.latest.cost.attendance.program_year;
-      //let admissions = Math.round(university.latest.admissions.admission_rate.overall * 100) + '%';
-      //cost: cost,
-      //"Admission Rate": admissions,
-   
   }
   
 };

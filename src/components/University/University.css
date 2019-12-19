@@ -20,12 +20,22 @@
 .University-information {
   display: flex;
   justify-content: space-between;
+  display: block;
 }
 
 .University-information p {
   font-size: .88rem;
   font-weight: 300;
   line-height: 1rem;
+}
+
+.University-websites {
+  display: flex;
+  justify-content: space-between;
+  display: block;
+}
+a {
+  display: block;
 }
 
 .University-address {
@@ -49,4 +59,8 @@
 .University-reviews .rating {
   font-size: .88rem;
   line-height: 1rem;
+}
+
+.urlStyle {
+  overflow-wrap: break-word;
 }
