@@ -11,7 +11,7 @@ export const Scorecard = {
       console.log(querystring);
       return axios.get(`${baseUrl}${querystring}`)
         .then(data => {
-          //console.log(data.data);
+          console.log(data.data);
           
           return data.data.results.map(university => ({
             id: university.id,

@@ -76,6 +76,16 @@ const uOptions = [
   {name:	"Rural, Outside Metropolitan Area "},		
   {name:	"Rural, Inside Metropolitan Area"}
 ];
+
+const dOptions = [
+  {name: "Non-degree-granting"},
+  {name: "Certificate degree"},
+  {name: "Associate degree"},
+  {name: "Bachelor's degree"},
+  {name: "Graduate degree"}
+];
+
+
 export const regionOptions = rOptions.map((option) => ({
   label: option.name,
   value: rOptions.indexOf(option)
@@ -89,4 +99,9 @@ export const stateOptions = sOptions.map((option) => ({
 export const urbanOptions = uOptions.map((option) => ({
   label: option.name,
   value: uOptions.indexOf(option)
+}));
+
+export const degreeOptions = dOptions.map((option) => ({
+  label: option.name,
+  value: dOptions.indexOf(option)
 }));
