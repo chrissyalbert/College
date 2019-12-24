@@ -5,6 +5,7 @@ import Card from 'react-bootstrap/Card';
 class University extends React.Component {
   render() {
     return (  
+      <div>
         <Card className="University">
           <Card.Body>
               <Card.Title>{this.props.university.name}</Card.Title>
@@ -43,6 +44,7 @@ class University extends React.Component {
               </Card.Text>
           </Card.Body>
         </Card>
+      </div>
     );
   }
 }

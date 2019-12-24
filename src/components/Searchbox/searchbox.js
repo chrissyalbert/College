@@ -12,27 +12,67 @@ import { urbanOptions } from "./options";
 class Searchbox extends React.Component {
   constructor(props) {
     super(props);
+    this.arr = [];
     this.state = {
-      values: [],
-      searchObjects: []
+      selectedRegions: null,
+      selectedStates: null,
+      selectedUrbans: null,
+      
     }
 
     this.setSelected = this.setSelected.bind(this);
+    this.setRegions = this.setRegions.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
+    this.fixDuplicates = this.fixDuplicates.bind(this);
+  }
+
+  fixDuplicates(possibleArr) {
+    if (possibleArr.length > 1) {
+      let prop = Object.getOwnPropertyNames(possibleArr[0]);
+      let values = possibleArr.flatMap(element => Object.values(element));
+      return Object.assign({}, {[prop]: values});
+    }
+     return possibleArr.shift();
   }
 
   setSelected(selected, property) {
-    let searchObjects = selected.map(obj => Object.assign({}, {[property]: obj.value}));
+    //let searchObjects = selected.map(obj => Object.assign({}, {[property]: obj.value}));
+    //let index = this.state.selected.indexOf([property]);
+    let obj = {};
+    if (selected) {
+      let arr = [];
+      for (let i = 0; i < selected.length; i++) {
+        arr.push(selected[i].value);
+      }
+      obj = Object.assign({}, {[property]: arr});
+    }
+    //let newObj = [this.state.selected][index];
+    
     this.setState( { 
-      
-      searchObjects
+      selected: [obj]
      });
-    //console.log(searchObjects);
+     console.log(this.state.selected);
+     this.setState({
+       searchObjects: [this.state.selected]
+     });
+    console.log(this.state.searchObjects);
   }
 
+  setRegions(selected) {
+    //console.log(selected);
+    let selectedRegions = selected.map(obj => Object.assign({}, {"school.region_id": obj.value}));
+    selectedRegions = this.fixDuplicates(selectedRegions);
+    console.log(selectedRegions);
+    this.setState({
+      selectedRegions
+    }, () => console.log(this.state));
+    
+  }
+ 
+
   handleSearch(event) {
-    this.props.searchSchools(this.state.searchObjects);
-    console.log(this.state.searchObjects);
+
+    this.props.searchSchools(this.state);
     event.preventDefault();
   }
 
@@ -47,7 +87,7 @@ class Searchbox extends React.Component {
               <Card.Text>
         Select one or more regions to search.
               </Card.Text>
-              <Select multi options={regionOptions} onChange={(selected) => this.setSelected(selected, "school.region_id")}/>
+              <Select multi options={regionOptions} onChange={(selected) => this.setRegions(selected)}/>
             </Card.Body>
           </Card>
         
@@ -81,3 +121,11 @@ class Searchbox extends React.Component {
 }
 
 export default Searchbox;
+
+/*[
+  {"school.region_id": null},
+  {"school.state_fips": null},
+  {"school.degree_urbanization": null},
+],
+
+*/

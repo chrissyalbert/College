@@ -3,15 +3,15 @@ import { completeQueryString } from '../util/querystring';
 const axios = require('axios');
 const baseUrl = 'http://api.data.gov/ed/collegescorecard/v1/schools'; 
 
-//Scoredcard is a class
+
 export const Scorecard = {
-  search(...params) {
-    let querystring = completeQueryString(params);
+  search(obj) {
+    let querystring = completeQueryString(obj);
       //console.log(`${baseUrl}${querystring}`);
-      //console.log(querystring);
+      console.log(querystring);
       return axios.get(`${baseUrl}${querystring}`)
         .then(data => {
-          console.log(data.data);
+          //console.log(data.data);
           
           return data.data.results.map(university => ({
             id: university.id,

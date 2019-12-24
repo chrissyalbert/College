@@ -22,7 +22,7 @@ class Searchbox extends React.Component {
     this.handleSearch = this.handleSearch.bind(this);
   }
 
-//var joined = this.state.myArray.concat('new value');
+var joined = this.state.selected.concat('new value');
 //this.setState({ myArray: joined })
 
   setSelected(selected, property) {

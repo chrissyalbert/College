@@ -31,9 +31,8 @@ class App extends React.Component {
     this.searchSchools = this.searchSchools.bind(this);
   }
 
-  searchSchools(...params) {
-    Scorecard.search(...params).then(universities => {this.setState({universities: universities})});
-    //console.log(Scorecard.search(...params));
+  searchSchools(obj) {
+    Scorecard.search(obj).then(universities => {this.setState({universities: universities})});
     }
   
   render() {
