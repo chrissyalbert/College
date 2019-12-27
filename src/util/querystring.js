@@ -7,12 +7,16 @@ export function completeQueryString(obj) {
   querystring += queryString.stringify(apiObject);
   let string = "";
   for (const key in obj) {
-    let str = queryString.stringify(obj[key], {arrayFormat: 'comma'}, {encode: false}, {skipNull: true});
-    console.log(str);
-    string += str;
+    if (obj[key]) {
+      let str = "&";
+      str += queryString.stringify(obj[key], {arrayFormat: 'comma'}, {encode: false}, {skipNull: true});
+      console.log(str);
+      string += str;
+    }
+    
     console.log(string);
   }
-  querystring += `&${string}`;
+  querystring += string;
   querystring += `&_fields=id,school.name,school.school_url,school.city,school.state,school.price_calculator_url,latest.admissions.admission_rate.overall,latest.admissions.sat_scores.average.overall,latest.student.size,latest.cost.attendance.academic_year,latest.cost.attendance.program_year`;
   return querystring;
 };
@@ -42,4 +46,9 @@ function singleQueryString(arr) {
   return querystring;
   
 }
+
+http://api.data.gov/ed/collegescorecard/v1/schools?api_key=fyVASqX6EDl4algr3QzzJLeTvjB1eN4ueTns4Lbr&school.degrees_awarded.predominant=2,3&&fields=id,school.name,2013.student.size
+
+
+http://api.data.gov/ed/collegescorecard/v1/schools?api_key=fyVASqX6EDl4algr3QzzJLeTvjB1eN4ueTns4Lbr&school.state_fips=2,4&degrees_awarded.highest=3&_fields=id,school.name,school.school_url,school.city,school.state,school.price_calculator_url,latest.admissions.admission_rate.overall,latest.admissions.sat_scores.average.overall,latest.student.size,latest.cost.attendance.academic_year,latest.cost.attendance.program_year
 */

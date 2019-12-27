@@ -1,3 +1,9 @@
+
+#position {
+  margin-top: 2%;
+  
+}
+
 .Searchbox {
   display: flex;
   flex-direction: column;
@@ -5,7 +11,7 @@
   background-image: url('./background-search-desktop.jpg'); 
   background-size: cover;
   background-repeat: no-repeat;
-  height: 25rem;
+  height: auto;
 }
 
 .Searchbox-sort-options ul {
@@ -74,6 +80,12 @@
   cursor: pointer;
   background-color: #a7874b;
 }
+
+.SearchState, .SearchUrban {
+  padding-top: 1rem;
+}
+
+
 
 @media only screen and (max-width: 560px) {
   .Searchbox {

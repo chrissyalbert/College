@@ -81,9 +81,50 @@ const dOptions = [
   {name: "Non-degree-granting"},
   {name: "Certificate degree"},
   {name: "Associate degree"},
-  {name: "Bachelor's degree"},
-  {name: "Graduate degree"}
+  {name: "Bachelor's degree"}
 ];
+
+const pOptions = [
+  {name: "Agriculture, Agriculture Operations, And Related Sciences"},
+  {name: "Architecture And Related Services"},
+  {name: "Area, Ethnic, Cultural, Gender, And Group Studies"},
+  {name: "Biological And Biomedical Sciences"},
+  {name: "Business, Management, Marketing, And Related Support Services"},
+  {name: "Communication, Journalism, And Related Programs"},
+  {name: "Communications Technologies/Technicians And Support Services"},
+  {name: "Computer And Information Sciences And Support Services"},
+  {name: "Construction Trades"},
+  {name: "Education"},
+  {name: "Engineering"},
+  {name: "Engineering Technologies And Engineering-Related Fields"},
+  {name: "English Language And Literature/Letters"},
+  {name: "Family And Consumer Sciences/Human Sciences"},
+  {name: "Foreign Languages, Literatures, And Linguistics"},
+  {name: "Health Professions And Related Programs"},
+  {name: "History"},
+  {name: "Homeland Security, Law Enforcement, Firefighting And Related Protective Services"},
+  {name: "Legal Professions And Studies"},
+  {name: "Liberal Arts And Sciences, General Studies And Humanities"},
+  {name: "Library Science"},
+  {name: "Mathematics And Statistics"},
+  {name: "Mechanic And Repair Technologies/Technicians"},
+  {name: "Military Technologies And Applied Sciences"},
+  {name: "Multi/Interdisciplinary Studies"},
+  {name: "Natural Resources And Conservation"},
+  {name: "Parks, Recreation, Leisure, And Fitness Studies"},
+  {name: "Personal And Culinary Services"},
+  {name: "Philosophy And Religious Studies"},
+  {name: "Physical Sciences"},
+  {name: "Precision Production"},
+  {name: "Psychology"},
+  {name: "Public Administration And Social Service Professions"},
+  {name: "Science Technologies/Technicians"},
+  {name: "Social Sciences"},
+  {name: "Theology And Religious Vocations"},
+  {name: "Transportation And Materials Moving"},
+  {name: "Visual And Performing Arts"}
+];
+
 
 
 export const regionOptions = rOptions.map((option) => ({
@@ -104,4 +145,9 @@ export const urbanOptions = uOptions.map((option) => ({
 export const degreeOptions = dOptions.map((option) => ({
   label: option.name,
   value: dOptions.indexOf(option)
+}));
+
+export const programOptions = pOptions.map((option) => ({
+  label: option.name,
+  value: pOptions.indexOf(option)
 }));

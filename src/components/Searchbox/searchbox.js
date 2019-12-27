@@ -5,10 +5,7 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button'
 import Select from "react-dropdown-select";
 
-import { stateOptions } from "./options";
-import { regionOptions } from "./options";
-import { urbanOptions } from "./options";
-import { degreeOptions } from "./options";
+import { stateOptions, regionOptions, urbanOptions, degreeOptions, programOptions } from "./options";
 
 class Searchbox extends React.Component {
   constructor(props) {
@@ -18,7 +15,8 @@ class Searchbox extends React.Component {
       selectedRegions: null,
       selectedStates: null,
       selectedUrbans: null,
-      selectedDegrees: null
+      selectedDegrees: null,
+      selectedPrograms: null
       
     }
 
@@ -72,7 +70,7 @@ class Searchbox extends React.Component {
 
   setDegrees(selected) {
     //console.log(selected);
-    let selectedDegrees = selected.map(obj => Object.assign({}, {"degrees_awarded.highest": obj.value}));
+    let selectedDegrees = selected.map(obj => Object.assign({}, {"school.degrees_awarded.predominant": obj.value}));
     selectedDegrees = this.fixDuplicates(selectedDegrees);
     console.log(selectedDegrees);
     this.setState({
@@ -84,59 +82,70 @@ class Searchbox extends React.Component {
     this.props.searchSchools(this.state);
     event.preventDefault();
   }
-
+/*
+<div className="SearchProgram">
+            <Card.Body>
+              <Card.Text>
+        Select the academic field you want to study. 
+              </Card.Text>
+              <Select multi options={programOptions} onChange={selected => this.setPrograms(selected)} />
+            </Card.Body>
+            </div>
+            */
   render() {
     return (
       <div className="Searchbox">
-        <div className="SearchLocation">
+        <div id="position">
         <CardDeck>
-          <Card className="SearchRegion">
+          <Card>
             <Card.Body>
-              <Card.Title>Region</Card.Title>
-              <Card.Text>
+              <Card.Title>Location</Card.Title>
+                <div className="SearchRegion">
+                  <Card.Text>
         Select one or more regions to search.
-              </Card.Text>
-              <Select multi options={regionOptions} onChange={(selected) => this.setRegions(selected)}/>
-            </Card.Body>
-          </Card>
-        
-          <Card className="SearchState">
-            <Card.Body>
-              <Card.Title>State</Card.Title>
-              <Card.Text>
+                  </Card.Text>
+                  <Select multi options={regionOptions} onChange={(selected) => this.setRegions(selected)}/>    
+                </div>
+                <div className="SearchState">
+                  <Card.Text>
         Select one or more states to search.
-              </Card.Text>
-              <Select multi options={stateOptions} onChange={selected => this.setStates(selected)} />
-            </Card.Body>
-          </Card>
-
-          <Card className="SearchUrban"> 
-            <Card.Body>
-              <Card.Title>City, Town, or Country</Card.Title>
-              <Card.Text>
+                  </Card.Text>
+                  <Select multi options={stateOptions} onChange={selected => this.setStates(selected)} />
+                </div>
+                <div className="SearchUrban">
+                  <Card.Text>
         Select the size of your ideal college town.
               </Card.Text>
               <Select multi options={urbanOptions} onChange={(selected) => this.setUrbans(selected)} />
-            </Card.Body>
+                </div>
+              </Card.Body>
           </Card>
-
-          <Card className="SearchDegree">
+      
+          <Card>
             <Card.Body>
-              <Card.Title>Degree</Card.Title>
+            <Card.Title>Degrees And Programs</Card.Title>
+            <div className="SearchDegree">
               <Card.Text>
-        Select the type of degree you wan to earn. 
+        Select the type of degree you want to earn. 
               </Card.Text>
               <Select multi options={degreeOptions} onChange={selected => this.setDegrees(selected)} />
-            </Card.Body>
+            </div>
+            </Card.Body>  
           </Card>
 
-
+          <Card > 
+            <Card.Body>
+            <Card.Title>Type of School</Card.Title>
+              
+            </Card.Body>
+          </Card>
         </CardDeck>
+        </div>
         <Button className="SearchBox-submit" variant='dark' size="lg" block onClick={this.handleSearch}>
           Search Schools
         </Button>
         </div>
-      </div>
+      
     );
   }
 }
