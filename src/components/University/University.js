@@ -35,10 +35,10 @@ class University extends React.Component {
                   </div>
                   <div classname="Univeristy-cost">
                   {this.props.university.costAcademic &&
-                    <p>Sticker Price: ${this.props.university.costAcademic.toLocaleString("USD")}</p>
+                    <p>Price Per Year: ${this.props.university.costAcademic.toLocaleString("USD")}</p>
                   }
                   {this.props.university.costProgram &&
-                    <p>Sticker Price: ${this.props.university.costProgram.toLocaleString("USD")}</p>
+                    <p>Price Per Year: ${this.props.university.costProgram.toLocaleString("USD")}</p>
                   }
                   </div>
               </Card.Text>

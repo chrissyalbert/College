@@ -32,7 +32,7 @@ class App extends React.Component {
   }
 
   searchSchools(obj) {
-    Scorecard.search(obj).then(universities => {this.setState({universities: universities})});
+    Scorecard.search(obj).then(universities => {this.setState({universities})});
     }
   
   render() {
