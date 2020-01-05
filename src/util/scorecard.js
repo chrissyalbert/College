@@ -4,8 +4,10 @@ const axios = require('axios');
 const baseUrl = 'http://api.data.gov/ed/collegescorecard/v1/schools'; 
 
 
+
 export const Scorecard = {
   search(obj) {
+    
     let querystring = completeQueryString(obj);
       //console.log(`${baseUrl}${querystring}`);
       console.log(querystring);
@@ -32,6 +34,11 @@ export const Scorecard = {
   }
   
 };
+
+
+    /*
+    if obj
+    */
 
 // const scorecardUrbanInstitute = "https://educationdata.urban.org/api/v1/college-university/scorecard/institutional-characteristics/2000/";
 // const ipedsUrbanInstitute = 'https://educationdata.urban.org/api/v1/college-university/ipeds/institutional-characteristics/1990/';

@@ -1,3 +1,7 @@
+section {
+  padding: .5rem;
+}
+
 .University {
   display: flex;
   flex-direction: column;

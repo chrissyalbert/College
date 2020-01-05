@@ -5,7 +5,7 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button'
 import Select from "react-dropdown-select";
 
-import { stateOptions, regionOptions, degreeOptions, programOptions } from "./options";
+import { stateOptions, regionOptions, degreeProgramOptions, programOptions } from "./options";
 
 class Searchbox extends React.Component {
   constructor(props) {
@@ -14,16 +14,17 @@ class Searchbox extends React.Component {
     this.state = {
       selectedRegions: null,
       selectedStates: null,
-
+      selectedPrograms: null,
       selectedDegrees: null,
-      selectedPrograms: null
+      
       
     }
+    this.programDegree = false;
     this.setSelected = this.setSelected.bind(this);
     this.setDegrees = this.setDegrees.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
     this.fixDuplicates = this.fixDuplicates.bind(this);
-
+    this.setPrograms = this.setPrograms.bind(this);
   }
 
   fixDuplicates(possibleArr) {
@@ -44,29 +45,69 @@ class Searchbox extends React.Component {
     }, () => console.log(this.state));
   }
 
+  
+/*
+let programDegree = false;
+
+*/
+
+  setPrograms(selected) {
+    
+      let string = selected[0].value;
+      console.log(string);
+      
+      this.setState({
+      selectedPrograms: [string],
+      selectedDegrees: null
+    }, () => console.log(this.state));
+      //this.setDegrees([]);
+      if (!this.state.selectedDegrees) {
+        this.programDegree = true;
+      }
+  }
+  
+
   setDegrees(selected) {
-    //console.log(selected);
+    console.log(selected);
+    let string = selected[0].value;
+    console.log(string);
+    if (this.state.selectedPrograms) {
+      
+      
+      string += this.state.selectedPrograms;
+      let obj = Object.assign({}, {[string]: 1})
+      console.log(obj);
+      this.setState({
+        selectedDegrees: obj,
+        selectedPrograms: null
+      }, () => console.log(this.state));
+      this.programDegree = false;
+      //this.setPrograms([]);
+    }
+    //let selectedDegrees = selected[0].value;
+    //console.log(selectedDegrees);
+    this.programDegree = true;
+    //this.setPrograms([]);
+    return;
+    /*
     let selectedDegrees = selected.map(obj => Object.assign({}, {"school.degrees_awarded.predominant": obj.value}));
     selectedDegrees = this.fixDuplicates(selectedDegrees);
-    console.log(selectedDegrees);
     this.setState({
       selectedDegrees
     }, () => console.log(this.state));
+    */
   }
 
   handleSearch(event) {
+    if (this.state.selectedPrograms && !this.state.selectedDegree ) {
+      this.programDegree = true;
+      return;
+    }
     this.props.searchSchools(this.state);
     event.preventDefault();
   }
 /*
-<div className="SearchProgram">
-            <Card.Body>
-              <Card.Text>
-        Select the academic field you want to study. 
-              </Card.Text>
-              <Select multi options={programOptions} onChange={selected => this.setPrograms(selected)} />
-            </Card.Body>
-            </div>
+
 
 <div className="SearchUrban">
                   <Card.Text>
@@ -104,12 +145,23 @@ class Searchbox extends React.Component {
           <Card>
             <Card.Body>
             <Card.Title>Degrees And Programs</Card.Title>
+            <div className="SearchProgram">
+              {this.programDegree && 
+              <span className="attention">
+                Please select both academic field and degree type.
+              </span>} 
+              <Card.Text>
+        Select the academic field you want to study. 
+              </Card.Text>
+              <Select clearOnSelect searchable options={programOptions} onChange={selected => this.setPrograms(selected)} />
+            </div>
             <div className="SearchDegree">
               <Card.Text>
         Select the type of degree you want to earn. 
               </Card.Text>
-              <Select multi options={degreeOptions} onChange={selected => this.setDegrees(selected)} />
+              <Select clearOnSelect searchable options={degreeProgramOptions} onChange={selected => this.setDegrees(selected)} />
             </div>
+            
             </Card.Body>  
           </Card>
 
