@@ -14,14 +14,10 @@ class University extends React.Component {
                     <Card.Text>{this.props.university.city}, {this.props.university.state}</Card.Text>
                   </section>
                   <section className="University-websites">
-                    
                       <Card.Text>Website: <a href={this.props.university.URL} target="_blank" rel="noopener noreferrer" className="urlStyle">{this.props.university.URL}</a>
-                      </Card.Text>
-                                    
+                      </Card.Text>       
                     {this.props.university["School Price Calculator"] && 
-                    
                         <Card.Text>School Price Calculator: <a href={this.props.university["School Price Calculator"]} target="_blank" rel="noopener noreferrer" className="urlStyle">{this.props.university["School Price Calculator"]}</a></Card.Text>
-                    
                     }
                   </section>
                   <section className="Univeristy-admissions">

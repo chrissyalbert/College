@@ -2,10 +2,13 @@ import React from 'react';
 import './searchbox.css';
 import CardDeck from 'react-bootstrap/CardDeck';
 import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button'
-import Select from "react-dropdown-select";
+import Button from 'react-bootstrap/Button';
+//import Select from "react-dropdown-select";
+import { SearchProgram } from "./SearchProgram";
+import { SearchDegree } from "./SearchDegree";
+import { SearchState } from "./SearchState";
+import { SearchRegion } from "./SearchRegion";
 
-import { stateOptions, regionOptions, degreeProgramOptions, programOptions } from "./options";
 
 class Searchbox extends React.Component {
   constructor(props) {
@@ -21,10 +24,12 @@ class Searchbox extends React.Component {
     }
     this.programDegree = false;
     this.setSelected = this.setSelected.bind(this);
-    this.setDegrees = this.setDegrees.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
-    this.fixDuplicates = this.fixDuplicates.bind(this);
-    this.setPrograms = this.setPrograms.bind(this);
+    this.fixDuplicates = this.fixDuplicates.bind(this); 
+    this.onRegionChange = this.onRegionChange.bind(this);
+    this.onStateChange = this.onStateChange.bind(this);
+    this.onDegreeChange = this.onDegreeChange.bind(this);
+    this.onProgramChange = this.onProgramChange.bind(this);
   }
 
   fixDuplicates(possibleArr) {
@@ -45,57 +50,28 @@ class Searchbox extends React.Component {
     }, () => console.log(this.state));
   }
 
-  
-/*
-let programDegree = false;
-
-*/
-
-  setPrograms(selected) {
-    
-      let string = selected[0].value;
-      console.log(string);
-      
-      this.setState({
-      selectedPrograms: [string],
-      selectedDegrees: null
-    }, () => console.log(this.state));
-      //this.setDegrees([]);
-      if (!this.state.selectedDegrees) {
-        this.programDegree = true;
-      }
+  onRegionChange(selected) {
+    this.setSelected(selected, "school.region_id", "selectedRegions");
   }
-  
 
-  setDegrees(selected) {
-    console.log(selected);
+  onStateChange(selected) {
+    this.setSelected(selected, "school.state_fips", "selectedStates");
+  }
+
+  onProgramChange(selected) {
     let string = selected[0].value;
     console.log(string);
-    if (this.state.selectedPrograms) {
-      
-      
-      string += this.state.selectedPrograms;
-      let obj = Object.assign({}, {[string]: 1})
-      console.log(obj);
-      this.setState({
-        selectedDegrees: obj,
-        selectedPrograms: null
-      }, () => console.log(this.state));
-      this.programDegree = false;
-      //this.setPrograms([]);
-    }
-    //let selectedDegrees = selected[0].value;
-    //console.log(selectedDegrees);
-    this.programDegree = true;
-    //this.setPrograms([]);
-    return;
-    /*
-    let selectedDegrees = selected.map(obj => Object.assign({}, {"school.degrees_awarded.predominant": obj.value}));
-    selectedDegrees = this.fixDuplicates(selectedDegrees);
     this.setState({
-      selectedDegrees
+    selectedPrograms: string
     }, () => console.log(this.state));
-    */
+    this.programDegree = true;  
+  }
+
+  onDegreeChange(obj) {
+    this.setState({
+      selectedDegrees: obj,
+      selectedPrograms: null
+    }, () => console.log(this.state));
   }
 
   handleSearch(event) {
@@ -107,17 +83,14 @@ let programDegree = false;
     event.preventDefault();
   }
 /*
-
-
 <div className="SearchUrban">
                   <Card.Text>
         Select the size of your ideal college town.
               </Card.Text>
               <Select multi options={urbanOptions} onChange={(selected) => this.setSelected(selected, "school.degree_urbanization", "selectedUrbans")} />
                 </div>
-
-
             */
+
   render() {
     return (
       <div className="Searchbox">
@@ -126,42 +99,18 @@ let programDegree = false;
           <Card>
             <Card.Body>
               <Card.Title>Location</Card.Title>
-                <div className="SearchRegion">
-                  <Card.Text>
-        Select one or more regions to search.
-                  </Card.Text>
-                  <Select multi options={regionOptions} onChange={(selected) => this.setSelected(selected, "school.region_id", "selectedRegions")}/>    
-                </div>
-                <div className="SearchState">
-                  <Card.Text>
-        Select one or more states to search.
-                  </Card.Text>
-                  <Select multi options={stateOptions} onChange={selected => this.setSelected(selected, "school.state_fips", "selectedStates")} />
-                </div>
-                
+                <SearchRegion selectedRegions={this.state.selectedRegions} onRegionChange={this.onRegionChange} />
+                <SearchState selectedStates={this.state.selectedStates} onStateChange={this.onStateChange} />
               </Card.Body>
           </Card>
       
           <Card>
             <Card.Body>
-            <Card.Title>Degrees And Programs</Card.Title>
-            <div className="SearchProgram">
-              {this.programDegree && 
-              <span className="attention">
-                Please select both academic field and degree type.
-              </span>} 
-              <Card.Text>
-        Select the academic field you want to study. 
-              </Card.Text>
-              <Select clearOnSelect searchable options={programOptions} onChange={selected => this.setPrograms(selected)} />
-            </div>
-            <div className="SearchDegree">
-              <Card.Text>
-        Select the type of degree you want to earn. 
-              </Card.Text>
-              <Select clearOnSelect searchable options={degreeProgramOptions} onChange={selected => this.setDegrees(selected)} />
-            </div>
-            
+            <Card.Title>Programs and Degrees</Card.Title>
+            <SearchProgram selectedPrograms={this.state.selectedPrograms} onProgramChange={this.onProgramChange} />
+            {
+            this.programDegree && <SearchDegree selectedDegrees={this.state.selectedDegrees} selectedPrograms={this.state.selectedPrograms} onDegreeChange={this.onDegreeChange} />
+            } 
             </Card.Body>  
           </Card>
 
