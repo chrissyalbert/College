@@ -3,7 +3,8 @@ import './UniversityList.css';
 import University from '../University/University';
 
 class UniversityList extends React.Component {
-  render() {
+  
+  render() { 
     return (
       <div className="UniversityList">
         {this.props.universities.map(university => {

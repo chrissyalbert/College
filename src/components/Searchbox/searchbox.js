@@ -91,6 +91,8 @@ class Searchbox extends React.Component {
       return;
     }
     this.props.searchSchools(this.state);
+    
+    
     event.preventDefault();
   }
 /*
@@ -144,3 +146,6 @@ class Searchbox extends React.Component {
 }
 
 export default Searchbox;
+
+
+//this.props.hideSearchbox();
