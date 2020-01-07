@@ -1,5 +1,4 @@
 import React from 'react';
-import Card from 'react-bootstrap/Card';
 import Select from "react-dropdown-select";
 import { programOptions } from "./options";
 
@@ -7,9 +6,9 @@ export class SearchProgram extends React.Component {
   render() {
     return (
       <div className="SearchProgram">
-          <Card.Text>
+          <p>
         Select the academic field you want to study. 
-          </Card.Text>
+          </p>
           <Select clearOnSelect searchable options={programOptions} onChange={selected => this.props.onProgramChange(selected)} />
       </div>
     );

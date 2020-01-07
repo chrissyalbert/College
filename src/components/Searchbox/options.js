@@ -84,8 +84,8 @@ const uOptions = [
 const dOptions = [
   {name: "Non-degree-granting"},
   {name: "Certificate"},
-  { name: "Associate degree"},
-  { name: "Bachelor's degree"}
+  {name: "Associate degree"},
+  {name: "Bachelor's degree"}
 ];
 
 const dPOptions = [
@@ -137,6 +137,19 @@ const pOptions = [
   { name: "Visual And Performing Arts", queryTerm: ".visual_performing"}
 ];
 
+const oOptions = [
+  {name: "Public", value: 1},
+  {name: "Private nonprofit", value: 2},
+  {name: "Private for-profit", value: 3}
+];
+
+const siOptions = [
+  {name: "Less than 5,000 students", queryTerm: "0..5000"},
+  {name: "5,000--10,000 students", queryTerm: "5000..10000"},
+  {name: "10,000--20,000 students", queryTerm: "10000..20000"},
+  {name: "Greater than 20,000 students", queryTerm: "20000.."}
+];
+
 export const regionOptions = rOptions.map((option) => ({
   label: option.name,
   value: rOptions.indexOf(option)
@@ -163,6 +176,16 @@ export const programOptions = pOptions.map((option) => ({
 }));
 
 export const degreeProgramOptions = dPOptions.map((option) => ({
+  label: option.name,
+  value: option.queryTerm
+}));
+
+export const ownershipOptions = oOptions.map((option) => ({
+  label: option.name,
+  value: option.value
+}));
+
+export const sizeOptions = siOptions.map((option) => ({
   label: option.name,
   value: option.queryTerm
 }));

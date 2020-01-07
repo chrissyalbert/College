@@ -8,19 +8,19 @@ import { SearchProgram } from "./SearchProgram";
 import { SearchDegree } from "./SearchDegree";
 import { SearchState } from "./SearchState";
 import { SearchRegion } from "./SearchRegion";
-
+import { SearchOwnership } from "./SearchOwnership";
+import { SearchSize } from "./SearchSize";
 
 class Searchbox extends React.Component {
   constructor(props) {
     super(props);
-    this.arr = [];
     this.state = {
       selectedRegions: null,
       selectedStates: null,
       selectedPrograms: null,
       selectedDegrees: null,
-      
-      
+      selectedOwnership: null,
+      selectedSize: null
     }
     this.programDegree = false;
     this.setSelected = this.setSelected.bind(this);
@@ -30,6 +30,8 @@ class Searchbox extends React.Component {
     this.onStateChange = this.onStateChange.bind(this);
     this.onDegreeChange = this.onDegreeChange.bind(this);
     this.onProgramChange = this.onProgramChange.bind(this);
+    this.onOwnershipChange = this.onOwnershipChange.bind(this);
+    this.onSizeChange = this.onSizeChange.bind(this);
   }
 
   fixDuplicates(possibleArr) {
@@ -74,6 +76,15 @@ class Searchbox extends React.Component {
     }, () => console.log(this.state));
   }
 
+  onOwnershipChange(selected) {
+    this.setSelected(selected, "school.ownership", "selectedOwnership");
+  }
+
+  onSizeChange(selected) {
+    this.setSelected(selected, "latest.student.size__range", "selectedSize")
+  }
+
+
   handleSearch(event) {
     if (this.state.selectedPrograms && !this.state.selectedDegree ) {
       this.programDegree = true;
@@ -99,25 +110,26 @@ class Searchbox extends React.Component {
           <Card>
             <Card.Body>
               <Card.Title>Location</Card.Title>
-                <SearchRegion selectedRegions={this.state.selectedRegions} onRegionChange={this.onRegionChange} />
-                <SearchState selectedStates={this.state.selectedStates} onStateChange={this.onStateChange} />
-              </Card.Body>
+              <SearchRegion selectedRegions={this.state.selectedRegions} onRegionChange={this.onRegionChange} />
+              <SearchState selectedStates={this.state.selectedStates} onStateChange={this.onStateChange} />
+            </Card.Body>
           </Card>
       
           <Card>
             <Card.Body>
-            <Card.Title>Programs and Degrees</Card.Title>
-            <SearchProgram selectedPrograms={this.state.selectedPrograms} onProgramChange={this.onProgramChange} />
-            {
-            this.programDegree && <SearchDegree selectedDegrees={this.state.selectedDegrees} selectedPrograms={this.state.selectedPrograms} onDegreeChange={this.onDegreeChange} />
-            } 
+              <Card.Title>Programs and Degrees</Card.Title>
+              <SearchProgram selectedPrograms={this.state.selectedPrograms} onProgramChange={this.onProgramChange} />
+              {
+              this.programDegree && <SearchDegree selectedDegrees={this.state.selectedDegrees} selectedPrograms={this.state.selectedPrograms} onDegreeChange={this.onDegreeChange} />
+              } 
             </Card.Body>  
           </Card>
 
           <Card > 
             <Card.Body>
-            <Card.Title>Type of School</Card.Title>
-              
+              <Card.Title>Type of School</Card.Title>
+              <SearchOwnership selectedOwnership={this.state.selectedOwnership} onOwnershipChange={this.onOwnershipChange} /> 
+              <SearchSize selectedSize={this.state.selectedSize} onSizeChange={this.onSizeChange} />
             </Card.Body>
           </Card>
         </CardDeck>

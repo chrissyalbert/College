@@ -1,5 +1,4 @@
 import React from 'react';
-import Card from 'react-bootstrap/Card';
 import Select from "react-dropdown-select";
 import { degreeProgramOptions } from "./options";
 
@@ -23,9 +22,9 @@ export class SearchDegree extends React.Component {
   render() {
     return (
       <div className="SearchDegree">
-        <Card.Text>
+        <p>
           Select the type of degree you want to earn. 
-         </Card.Text>
+         </p>
         <Select clearOnSelect searchable options={degreeProgramOptions} onChange={selected => this.setDegrees(selected)} />
       </div>
     );
