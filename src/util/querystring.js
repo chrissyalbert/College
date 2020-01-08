@@ -10,14 +10,17 @@ export function completeQueryString(obj) {
     if (obj[key]) {
       let str = "&";
       str += queryString.stringify(obj[key], {arrayFormat: 'comma'}, {encode: false}, {skipNull: true});
-      console.log(str);
+      //console.log(str);
       string += str;
     }
-    
-    console.log(string);
+    //console.log(string);
   }
   querystring += string;
-  //if (program&degree) {}
+  //change results per page to 24
+  querystring += "&"
+  querystring += queryString.stringify({"per_page": 24});
+  console.log(querystring);
+  //if (additional search parameters) {}
   querystring += `&_fields=id,school.name,school.school_url,school.city,school.state,school.price_calculator_url,latest.admissions.admission_rate.overall,latest.admissions.sat_scores.average.overall,latest.student.size,latest.cost.attendance.academic_year,latest.cost.attendance.program_year`;
   //if (program&degree) {}
   return querystring;
@@ -30,6 +33,11 @@ function singleQueryString(params) {
   console.log(queryString);
   return queryString;
 }
+
+let test = {"_fields": ["id", "school.name", "school.school_url", "school.city", "school.state", "school.price_calculator_url", "latest.admissions.admission_rate.overall", "latest.admissions.sat_scores.average.overall", "latest.student.size", "latest.cost.attendance.academic_year", "latest.cost.attendance.program_year"]};
+    let result = queryString.stringify(test, {arrayFormat: 'comma'}, {encode: false}, {skipNull: true});
+    console.log(result);
+
 */
 /*
 
