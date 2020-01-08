@@ -61,8 +61,9 @@ class Searchbox extends React.Component {
   }
 
   onProgramChange(selected) {
+    
     let string = selected[0].value;
-    console.log(string);
+    //console.log(string);
     this.setState({
     selectedPrograms: string
     }, () => console.log(this.state));
@@ -144,3 +145,6 @@ class Searchbox extends React.Component {
 }
 
 export default Searchbox;
+
+
+//this.props.hideSearchbox();

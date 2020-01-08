@@ -9,7 +9,7 @@ export class SearchSize extends React.Component {
         <p>
         Select the size of the school to search.
         </p>
-        <Select clearOnSelect searchable options={sizeOptions} onChange={selected => this.props.onSizeChange(selected)} />
+        <Select options={sizeOptions} onChange={selected => this.props.onSizeChange(selected)} />
       </div>
     );
   }

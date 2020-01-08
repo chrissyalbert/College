@@ -9,7 +9,7 @@ export class SearchProgram extends React.Component {
           <p>
         Select the academic field you want to study. 
           </p>
-          <Select clearOnSelect searchable options={programOptions} onChange={selected => this.props.onProgramChange(selected)} />
+          <Select options={programOptions} onChange={selected => this.props.onProgramChange(selected)} />
       </div>
     );
   }
