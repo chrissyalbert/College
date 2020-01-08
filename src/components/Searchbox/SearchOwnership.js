@@ -9,7 +9,7 @@ export class SearchOwnership extends React.Component {
         <p>
         Select public or private options.
         </p>
-        <Select clearOnSelect searchable options={ownershipOptions} onChange={selected => this.props.onOwnershipChange(selected)} />
+        <Select options={ownershipOptions} onChange={selected => this.props.onOwnershipChange(selected)} />
       </div>
     );
   }

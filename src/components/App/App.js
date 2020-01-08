@@ -27,30 +27,31 @@ class App extends React.Component {
 
   searchSchools(obj) {
     Scorecard.search(obj).then(universities => {this.setState({universities})});
+    this.hideSearchbox();
     }
   
   hideSearchbox() {
     this.setState({
       searchOn: false
     });
+  
   }
 
-  newSearch() {
+  newSearch(event) {
     this.setState({
       searchOn: true
     }, () => console.log(this.state));
+    event.preventDefault();
   }
-  
-  componentDidUpdate() {
-    if(this.state.searchOn) {
-      this.setState({
-        searchOn: false
-      });
-    } 
+  /*
+  componentDidUpdate(prevProps, prevState) {
+    if(prevState.searchOn && !this.state.searchOn) {
+
+    }
+    
   }
+  */
 
-
-  
   render() {
     const searchOn = this.state.searchOn;
     return (
@@ -60,15 +61,12 @@ class App extends React.Component {
         </header>
         <main>
           {
-            searchOn ? (
-              <Searchbox searchSchools={universities => this.searchSchools(universities)}  />
-            ) : (
-              <Button className="App-submit" variant='primary' size="lg" block onClick={this.newSearch}>
-                New Search
-              </Button>
-            )
+            searchOn ? <Searchbox searchSchools={universities => this.searchSchools(universities)}  /> : 
+            <Button className="App-submit" variant='primary' size="lg" block onClick={this.newSearch}>
+            New Search
+            </Button>
           }
-            <UniversityList universities={this.state.universities}  searchOn={searchOn} />
+            <UniversityList universities={this.state.universities} searchOn={this.state.searchOn} hideSearchbox={this.hideSearchbox} />
 
         </main>
       </div>

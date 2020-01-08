@@ -3,7 +3,6 @@ import './UniversityList.css';
 import University from '../University/University';
 
 class UniversityList extends React.Component {
-  
   render() { 
     return (
       <div className="UniversityList">
@@ -16,3 +15,12 @@ class UniversityList extends React.Component {
 }
 
 export default UniversityList;
+
+/*
+componentDidUpdate() {
+    if(!this.props.searchOn) {
+      this.props.hideSearchbox();
+    }
+    
+  }
+  */
