@@ -27,6 +27,7 @@ class Searchbox extends React.Component {
       selectedStates: null,
       selectedPrograms: null,
       selectedDegrees: null,
+      selectedProgramDegree: null,
       selectedOwnership: null,
       selectedSize: null,
       missingDegree: null
@@ -39,6 +40,8 @@ class Searchbox extends React.Component {
     this.onStateChange = this.onStateChange.bind(this);
     this.onDegreeChange = this.onDegreeChange.bind(this);
     this.onProgramChange = this.onProgramChange.bind(this);
+    this.handleprogramDegree = this.handleprogramDegree.bind(this);
+    this.setStateAsync = this.setStateAsync.bind(this);
     this.onOwnershipChange = this.onOwnershipChange.bind(this);
     this.onSizeChange = this.onSizeChange.bind(this);
   }
@@ -71,25 +74,43 @@ class Searchbox extends React.Component {
 
   onProgramChange(selected) {
     let string = selected[0].value;
-    //console.log(string);
     this.setState({
     selectedPrograms: string
     }, () => console.log(this.state));
-    this.programDegree = true;  
+    this.programDegree = true;
   }
 
   onDegreeChange(selected) {
     console.log(selected);
     let string = selected[0].value;
-    string += this.state.selectedPrograms;
-    let obj = Object.assign({}, {[string]: 1})
-    console.log(obj);
     this.setState({
-      selectedDegrees: obj,
-      selectedPrograms: null,
+      selectedDegrees: string,
       missingDegree: null
     }, () => console.log(this.state));
   }
+
+  setStateAsync(state) {
+    return new Promise((resolve) => {
+      this.setState(state, resolve)
+    });
+  }
+
+  async handleprogramDegree(event) {
+    let string = this.state.selectedDegrees;
+    string += this.state.selectedPrograms;
+    let obj = Object.assign({}, {[string]: 1});
+    console.log(obj);
+    await this.setStateAsync({
+      selectedProgramDegree: obj,
+      selectedDegrees: null,
+      selectedPrograms: null,
+      missingDegree: null
+    });
+    console.log(this.state);
+    console.log(event);
+    //event.preventDefault();
+    this.props.searchSchools(this.state);
+    }  
 
   onOwnershipChange(selected) {
     this.setSelected(selected, "school.ownership", "selectedOwnership");
@@ -99,26 +120,19 @@ class Searchbox extends React.Component {
     this.setSelected(selected, "latest.student.size__range", "selectedSize")
   }
 
-
   handleSearch(event) {
-    if (this.state.selectedPrograms && !this.state.selectedDegree ) {
+    if (this.state.selectedPrograms && !this.state.selectedDegrees) {
       this.setState({
         missingDegree: true
       });
-      //console.log(this.state.missingDegree);
       return;
+    } else if (this.state.selectedPrograms && this.state.selectedDegrees) {
+      this.handleprogramDegree(event);
+    } else {
+      this.props.searchSchools(this.state);
+      event.preventDefault();
     }
-    this.props.searchSchools(this.state);
-    event.preventDefault();
   }
-/*
-<div className="SearchUrban">
-                  <Card.Text>
-        Select the size of your ideal college town.
-              </Card.Text>
-              <Select multi options={urbanOptions} onChange={(selected) => this.setSelected(selected, "school.degree_urbanization", "selectedUrbans")} />
-                </div>
-            */
 
   render() {
     return (
@@ -136,7 +150,7 @@ class Searchbox extends React.Component {
           <Card>
             <Card.Body>
               <Card.Title>Programs and Degrees</Card.Title>
-              <SearchProgram selectedPrograms={this.state.selectedPrograms} onProgramChange={this.onProgramChange} />
+              <SearchProgram selectedPrograms={this.state.selectedPrograms} onProgramChange={this.onProgramChange} resetProgram={this.resetProgram} />
               {this.state.missingDegree && <Attention /> }
               {this.programDegree && <SearchDegree selectedDegrees={this.state.selectedDegrees} selectedPrograms={this.state.selectedPrograms} onDegreeChange={this.onDegreeChange} /> } 
             </Card.Body>  
@@ -163,9 +177,12 @@ class Searchbox extends React.Component {
 export default Searchbox;
 
 /*
-<span className="attention">
-                Please select both academic field and degree type.
-              </span>
-              */
-
-//this.props.hideSearchbox();
+<div className="SearchUrban">
+                  <Card.Text>
+        Select the size of your ideal college town.
+              </Card.Text>
+              <Select multi options={urbanOptions} onChange={(selected) => this.setSelected(selected, "school.degree_urbanization", "selectedUrbans")} />
+                </div>
+            */
+  /*
+*/
