@@ -6,13 +6,6 @@ import Searchbox from '../Searchbox/searchbox';
 import { Scorecard } from '../../util/scorecard';
 import Button from 'react-bootstrap/Button';
 
-/*
-function noResults() {
-  <div>
-
-  </div>
-}
-*/
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -43,15 +36,7 @@ class App extends React.Component {
     }, () => console.log(this.state));
     event.preventDefault();
   }
-  /*
-  componentDidUpdate(prevProps, prevState) {
-    if(prevState.searchOn && !this.state.searchOn) {
-
-    }
-    
-  }
-  */
-
+ 
   render() {
     const searchOn = this.state.searchOn;
     return (
@@ -73,9 +58,5 @@ class App extends React.Component {
     );
   }
 } 
-  
-/*
-hideSearchbox={this.hideSearchbox}
-          */
  
 export default App;

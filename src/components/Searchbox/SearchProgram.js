@@ -15,15 +15,4 @@ export class SearchProgram extends React.Component {
   }
 }
 
-/*
-this.setState({
-    selectedPrograms: [string],
-    selectedDegrees: null
-  });
 
-
-{this.programDegree && 
-              <span className="attention">
-                Please select both academic field and degree type.
-              </span>}
-              */

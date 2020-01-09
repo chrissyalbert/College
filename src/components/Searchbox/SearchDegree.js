@@ -25,7 +25,7 @@ export class SearchDegree extends React.Component {
         <p>
           Select the type of degree you want to earn. 
          </p>
-        <Select options={degreeProgramOptions} onChange={selected => this.setDegrees(selected)} />
+        <Select options={degreeProgramOptions} onChange={selected => this.props.onDegreeChange(selected)} />
       </div>
     );
   }
