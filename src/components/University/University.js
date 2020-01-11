@@ -13,6 +13,12 @@ class University extends React.Component {
                     <h6>Location</h6>
                     <Card.Text>{this.props.university.city}, {this.props.university.state}</Card.Text>
                   </section>
+                  {this.props.university.size && 
+                  <section className="University-size">
+                    <h6>Size</h6>
+                    <Card.Text>{(this.props.university.size).toLocaleString('en-US')}</Card.Text>
+                  </section>
+                  }
                   <section className="University-websites">
                       <Card.Text>Website: <a href={this.props.university.URL} target="_blank" rel="noopener noreferrer" className="urlStyle">{this.props.university.URL}</a>
                       </Card.Text>       
