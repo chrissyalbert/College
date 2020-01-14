@@ -1,15 +1,18 @@
 import React from 'react';
+//import ReactDOM from 'react-dom';
 import './searchbox.css';
 import CardDeck from 'react-bootstrap/CardDeck';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
-//import Select from "react-dropdown-select";
+import Container from 'react-bootstrap/Container'
 import { SearchProgram } from "./SearchProgram";
 import { SearchDegree } from "./SearchDegree";
 import { SearchState } from "./SearchState";
 import { SearchRegion } from "./SearchRegion";
 import { SearchOwnership } from "./SearchOwnership";
 import { SearchSize } from "./SearchSize";
+import { SearchName } from "./SearchName";
+
 
 function Attention() {
     return (
@@ -23,6 +26,7 @@ class Searchbox extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      name: null,
       selectedRegions: null,
       selectedStates: null,
       selectedPrograms: null,
@@ -30,9 +34,11 @@ class Searchbox extends React.Component {
       selectedProgramDegree: null,
       selectedOwnership: null,
       selectedSize: null,
-      missingDegree: null
+      missingDegree: null,
+      results: {"_fields": ["id", "school.name", "school.school_url", "school.city", "school.state", "school.price_calculator_url", "latest.admissions.admission_rate.overall", "latest.admissions.sat_scores.average.overall", "latest.student.size", "latest.cost.attendance.academic_year", "latest.cost.attendance.program_year"]}
     }
     this.programDegree = false;
+    this.onNameChange = this.onNameChange.bind(this);
     this.setSelected = this.setSelected.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
     this.fixDuplicates = this.fixDuplicates.bind(this); 
@@ -44,6 +50,16 @@ class Searchbox extends React.Component {
     this.setStateAsync = this.setStateAsync.bind(this);
     this.onOwnershipChange = this.onOwnershipChange.bind(this);
     this.onSizeChange = this.onSizeChange.bind(this);
+  }
+
+  async onNameChange(value) {
+    console.log(value);
+    await this.setStateAsync({
+      name: {"school.name": value}
+    });
+    console.log(this.state); 
+    this.props.searchSchools(this.state);
+     
   }
 
   fixDuplicates(possibleArr) {
@@ -108,7 +124,7 @@ class Searchbox extends React.Component {
     });
     console.log(this.state);
     console.log(event);
-    //event.preventDefault();
+    
     this.props.searchSchools(this.state);
     }  
 
@@ -128,6 +144,7 @@ class Searchbox extends React.Component {
       return;
     } else if (this.state.selectedPrograms && this.state.selectedDegrees) {
       this.handleprogramDegree(event);
+      event.preventDefault();
     } else {
       this.props.searchSchools(this.state);
       event.preventDefault();
@@ -138,6 +155,10 @@ class Searchbox extends React.Component {
     return (
       <div className="Searchbox">
         <div id="position">
+          <Container>
+            
+            <SearchName onNameChange={this.onNameChange} />
+          </Container>
         <CardDeck>
           <Card>
             <Card.Body>
