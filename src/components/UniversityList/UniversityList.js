@@ -13,15 +13,18 @@ function NoResults() {
 class UniversityList extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      results: null
-    }
+    this.state = {}
   }
   componentDidUpdate(prevProps) {
     if ((this.props.universities !== prevProps.universities) && !this.props.universities.length){
       console.log(this.props.universities);
       this.setState({
-        results: "noResults"
+        noResults: "noResults"
+      });
+    }
+    if ((this.props.universities !== prevProps.universities) && this.props.universities.length) {
+      this.setState({
+        noResults: null
       });
     }
   }
@@ -29,7 +32,7 @@ class UniversityList extends React.Component {
     if (!this.props.universities) {
       return null;
     }
-    if (this.state.results) {
+    if (this.state.noResults) {
       return <NoResults />;
     }
       return (
