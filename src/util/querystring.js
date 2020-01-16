@@ -16,10 +16,6 @@ export function completeQueryString(obj) {
     //console.log(string);
   }
   querystring += string;
-  //change results per page to 24
-  querystring += "&"
-  querystring += queryString.stringify({"per_page": 24});
-  console.log(querystring);
   //if (additional search parameters) {}
   /*
 {encode: false},

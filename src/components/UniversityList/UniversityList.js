@@ -35,11 +35,13 @@ class UniversityList extends React.Component {
     if (this.state.noResults) {
       return <NoResults />;
     }
-      return (
-        <div className="UniversityList">
+    return (
+      <div>
+        {!this.props.searchOn && <div className="UniversityList">
           {this.props.universities.map(university => {
             return <University university={university} key={university.id} />;
           })}
+          </div>}
         </div>
       );
   }
