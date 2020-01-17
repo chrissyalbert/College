@@ -31,6 +31,11 @@ input:focus {
 /* App Styles */
 
 .App {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  
+  height: auto;
   text-align: center;
   font-family: 'Work Sans', sans-serif;
 }
@@ -39,11 +44,11 @@ input:focus {
   display: block;
   background-color: #cca353;
 }
-/*
-.main {
-  padding-top: 10%;
+
+.App-Submit {
+  padding: 5px auto;
 }
-*/
+
 h1 {
   padding: .66rem 0;
   text-align: center;
@@ -52,5 +57,3 @@ h1 {
   font-size: 1.8rem;
   color: #fff;
 }
-
-

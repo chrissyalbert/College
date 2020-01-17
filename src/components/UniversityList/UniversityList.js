@@ -2,7 +2,7 @@ import React from 'react';
 import './UniversityList.css';
 import University from '../University/University';
 
-function NoResults() {
+export function NoResults() {
   return (
     <div className="noResults">
       <p>No results were found for your search criteria. Please expand your search options by choosing more locations(region and/or states). Please note that choosing school public/private or school size options narrows search results.</p>
@@ -15,26 +15,26 @@ class UniversityList extends React.Component {
     super(props);
     this.state = {}
   }
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps, prevState) {
     if ((this.props.universities !== prevProps.universities) && !this.props.universities.length){
       console.log(this.props.universities);
       this.setState({
         noResults: "noResults"
       });
     }
-    if ((this.props.universities !== prevProps.universities) && this.props.universities.length) {
+  
+    if (this.props.searchOn && prevState.noResults) {
       this.setState({
         noResults: null
       });
     }
   }
+
   render() { 
-    if (!this.props.universities) {
-      return null;
-    }
     if (this.state.noResults) {
       return <NoResults />;
     }
+    
     return (
       <div>
         {!this.props.searchOn && <div className="UniversityList">
@@ -50,5 +50,9 @@ class UniversityList extends React.Component {
 export default UniversityList;
 
 /*
-
+if (this.props.universities === prevProps.universities && !this.props.universities.length & prevState === this.state.noResults) {
+      this.setState({
+        noResults: null
+      });
+    }
   */

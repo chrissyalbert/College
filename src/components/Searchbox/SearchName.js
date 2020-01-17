@@ -1,6 +1,6 @@
 import React from 'react';
-//import ReactDOM from 'react-dom';
-import Form from 'react-bootstrap/Form'
+import Form from 'react-bootstrap/Form';
+import './SearchName.css';
 
 export class SearchName extends React.Component {
   constructor(props) {
@@ -19,7 +19,6 @@ export class SearchName extends React.Component {
   }
 
   onChange(event) {
-    
     console.log(event.target.value);
     console.log(this.inputRef.current.value)
     this.props.onNameChange(this.inputRef.current.value);
@@ -27,7 +26,6 @@ export class SearchName extends React.Component {
   }
 
   render() {
-    //const node = this.inputRef.current;
     return (
       <Form onSubmit={this.handleSubmit} >
         <Form.Text className="text-muted">
@@ -35,8 +33,8 @@ export class SearchName extends React.Component {
         </Form.Text>
         <Form.Group controlId="formSchoolName">
           <Form.Label>Name of School</Form.Label>
-          <Form.Control type="text" placeholder="Enter name" ref={this.inputRef} name="name"   />
-          <input type="submit" value="Submit" />
+          <Form.Control className="name" type="text" placeholder="Enter name" ref={this.inputRef} name="name"   />
+          <input className="submit" type="submit" value="Submit" />
         </Form.Group>
         </Form>
     );

@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-//import 'bootstrap/dist/css/bootstrap.min.css';
+import Container from 'react-bootstrap/Container';
 import UniversityList from '../UniversityList/UniversityList';
 import Searchbox from '../Searchbox/searchbox';
 import { Scorecard } from '../../util/scorecard';
@@ -27,7 +27,6 @@ class App extends React.Component {
     this.setState({
       searchOn: false
     });
-  
   }
 
   newSearch(event) {
@@ -40,7 +39,7 @@ class App extends React.Component {
   render() {
     const searchOn = this.state.searchOn;
     return (
-      <div className="App">
+      <Container fluid className="App">
         <header className="App-header">
           <h1>College Costs... What?</h1>
         </header>
@@ -52,9 +51,8 @@ class App extends React.Component {
             </Button>
           }
             <UniversityList universities={this.state.universities} searchOn={this.state.searchOn} hideSearchbox={this.hideSearchbox} />
-
         </main>
-      </div>
+      </Container>
     );
   }
 } 
