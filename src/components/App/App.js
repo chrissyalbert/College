@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import Container from 'react-bootstrap/Container';
+import Jumbotron from 'react-bootstrap/Jumbotron';
 import UniversityList from '../UniversityList/UniversityList';
 import Searchbox from '../Searchbox/searchbox';
 import { Scorecard } from '../../util/scorecard';
@@ -43,15 +44,20 @@ class App extends React.Component {
         <header className="App-header">
           <h1>College Costs... What?</h1>
         </header>
-        <main>
+        
+          <Jumbotron >
+      
+          
           {
             searchOn ? <Searchbox searchSchools={universities => this.searchSchools(universities)}  /> : 
             <Button className="App-submit" variant='primary' size="lg" block onClick={this.newSearch}>
             New Search
             </Button>
-          }
-            <UniversityList universities={this.state.universities} searchOn={this.state.searchOn} hideSearchbox={this.hideSearchbox} />
-        </main>
+            }
+            </Jumbotron>
+          {this.state.universities !== [] && <UniversityList universities={this.state.universities} searchOn={this.state.searchOn} hideSearchbox={this.hideSearchbox} />}
+          
+        
       </Container>
     );
   }

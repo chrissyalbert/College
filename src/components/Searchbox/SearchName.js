@@ -29,12 +29,12 @@ export class SearchName extends React.Component {
     return (
       <Form onSubmit={this.handleSubmit} >
         <Form.Text className="text-muted">
-          Search for a school by name.
+          
         </Form.Text>
         <Form.Group controlId="formSchoolName">
           <Form.Label>Name of School</Form.Label>
           <Form.Control className="name" type="text" placeholder="Enter name" ref={this.inputRef} name="name"   />
-          <input className="submit" type="submit" value="Submit" />
+          <input className="submit btn-primary" type="submit" value="Submit" />
         </Form.Group>
         </Form>
     );

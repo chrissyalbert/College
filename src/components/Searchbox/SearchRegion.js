@@ -1,6 +1,7 @@
 import React from 'react';
 import Select from "react-dropdown-select";
 import { regionOptions } from "./options";
+import './searchregion.css';
 
 export class SearchRegion extends React.Component {
   render() {
