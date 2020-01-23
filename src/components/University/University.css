@@ -6,6 +6,10 @@ section {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+.info {
+  cursor: pointer;
+  color: rgb(69,110,160);
+}
 .University {
   display: flex;
   flex-direction: column;

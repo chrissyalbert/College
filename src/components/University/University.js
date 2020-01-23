@@ -1,6 +1,65 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './University.css';
 import Card from 'react-bootstrap/Card';
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
+
+function Academic() {
+  return (
+    <>
+    <Modal.Header closeButton>
+      <Modal.Title>What is the annual cost?</Modal.Title>
+    </Modal.Header>
+    <Modal.Body>This is the total cost of tuition, fees, living expenses for full time, first time undergraduates for an entire academic year. For public schools, the cost accounts for students paying in-state tuition. Expenses for living arrangements(on campus, off campus independent, off campus with family) are combined via a weighted average for those students utilizing those options at the school.</Modal.Body>
+    </>
+  );
+}
+
+function Program() {
+  return (
+    <>
+    <Modal.Header closeButton>
+      <Modal.Title>What is the annual cost for the largest program?</Modal.Title>
+    </Modal.Header>
+    <Modal.Body>This school follows a program-based or continuous enrollment calendar system. This is the annual cost of tuition, fees, living expenses for full time, first time undergraduates to attend the school's largest program. For public schools, the cost accounts for students paying in-state tuition. Expenses for living arrangements(on campus, off campus independent, off campus with family) are combined via a weighted average for those students utilizing those options at the school.</Modal.Body>
+    </>
+  );
+}
+
+function ModalWrapper(props) {
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  return (
+    <>
+      <i className="fas fa-question-circle info" onClick={handleShow}></i>
+      <Modal show={show} onHide={handleClose}>
+      {props.children}
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
+  );
+}
+
+function CostAcademic() {
+  return (
+    <ModalWrapper>
+      <Academic />
+    </ModalWrapper>
+  );
+}
+
+function CostProgram() {
+  return (
+    <ModalWrapper>
+      <Program />
+    </ModalWrapper>
+  );
+}
 
 class University extends React.Component {
   render() {
@@ -20,26 +79,32 @@ class University extends React.Component {
                   </section>
                   }
                   <section className="University-websites">
-                      <Card.Text>Website: <a href={this.props.university.URL} target="_blank" rel="noopener noreferrer" className="urlStyle">{this.props.university.URL}</a>
-                      </Card.Text>       
-                    {this.props.university["School Price Calculator"] && 
-                        <Card.Text>School Price Calculator: <a href={this.props.university["School Price Calculator"]} target="_blank" rel="noopener noreferrer" className="urlStyle">{this.props.university["School Price Calculator"]}</a></Card.Text>
+                      <h6>Website: </h6><Card.Text><a href={this.props.university.URL} target="_blank" rel="noopener noreferrer" className="urlStyle">{this.props.university.URL}</a>
+                      </Card.Text>    
+                    {this.props.university["School Price Calculator"] && <> 
+                        <h6>School Price Calculator: </h6> <Card.Text><a href={this.props.university["School Price Calculator"]} target="_blank" rel="noopener noreferrer" className="urlStyle">{this.props.university["School Price Calculator"]}</a></Card.Text></>
                     }
                   </section>
-                  <section className="Univeristy-admissions">
-                  {this.props.university["Admission Rate"] &&
-                    <Card.Text>Admission Rate: {Math.round(this.props.university["Admission Rate"] * 100) + '%'}</Card.Text>
+                  <section className="University-admissions">
+                  {this.props.university["Admission Rate"] && <>
+                    <h6>Admission Rate: </h6> <Card.Text>{Math.round(this.props.university["Admission Rate"] * 100) + '%'}</Card.Text> </>
                   }
-                  {this.props.university["Average SAT score"] &&
-                    <Card.Text>Average SAT score: {this.props.university["Average SAT score"]}</Card.Text>
+                  {this.props.university["Average SAT score"] && <>
+                    <h6>Average SAT score: </h6><Card.Text>{this.props.university["Average SAT score"]}</Card.Text></>
                   }
                   </section>
-                  <section className="Univeristy-cost">
-                  {this.props.university.costAcademic &&
-                    <Card.Text>Price Per Year: ${this.props.university.costAcademic.toLocaleString("USD")}</Card.Text>
+                  <section className="University-cost">
+                  {this.props.university.costAcademic && <>
+                    <h6>Annual Cost: </h6>
+                    <Card.Text>
+                    <CostAcademic />
+                    ${this.props.university.costAcademic.toLocaleString("USD")}</Card.Text></>
                   }
-                  {this.props.university.costProgram &&
-                    <Card.Text>Price Per Year: ${this.props.university.costProgram.toLocaleString("USD")}</Card.Text>
+                  {this.props.university.costProgram && <>
+                    <h6>Annual Cost for Largest Program: </h6>
+                    <Card.Text>
+                    <CostProgram />
+                    ${this.props.university.costProgram.toLocaleString("USD")}</Card.Text></>
                   }
                   </section>
               </div>

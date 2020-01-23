@@ -14,6 +14,14 @@ input:focus {
   outline: none;
 }
 
+.btn-primary {
+  background-color: rgb(128,128,128);
+  border: none;
+  background-image: linear-gradient(rgb(128,128,128), rgb(192,192,192));
+  box-shadow: 0px 1px 4px -2px #333;
+  
+}
+
 .jumbotron {
   background-image: url('../images/graduation.jpg');
   background-size: cover;

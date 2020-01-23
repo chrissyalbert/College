@@ -6,7 +6,7 @@ export class SearchName extends React.Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.onChange = this.onChange.bind(this);
+    //this.onChange = this.onChange.bind(this);
     this.inputRef = React.createRef();
     this.node = this.inputRef.current;
   }
@@ -17,23 +17,20 @@ export class SearchName extends React.Component {
     this.props.onNameChange(this.inputRef.current.value);
     event.preventDefault();
   }
-
+/*
   onChange(event) {
     console.log(event.target.value);
     console.log(this.inputRef.current.value)
     this.props.onNameChange(this.inputRef.current.value);
     event.persist();
   }
-
+*/
   render() {
     return (
       <Form onSubmit={this.handleSubmit} >
-        <Form.Text className="text-muted">
-          
-        </Form.Text>
         <Form.Group controlId="formSchoolName">
           <Form.Label>Name of School</Form.Label>
-          <Form.Control className="name" type="text" placeholder="Enter name" ref={this.inputRef} name="name"   />
+          <Form.Control className="name" type="text" placeholder="Enter name" ref={this.inputRef} name="name" />
           <input className="submit btn-primary" type="submit" value="Submit" />
         </Form.Group>
         </Form>
