@@ -2,7 +2,7 @@ import React from 'react';
 import './UniversityList.css';
 import University from '../University/University';
 
-export function NoResults() {
+function NoResults() {
   return (
     <div className="noResults">
       <p>No results were found for your search criteria. Please expand your search options by choosing more locations(region and/or states). Please note that choosing school public/private or school size options narrows search results.</p>
@@ -39,7 +39,7 @@ class UniversityList extends React.Component {
       <div>
         {!this.props.searchOn && <div className="UniversityList">
           {this.props.universities.map(university => {
-            return <University university={university} key={university.id} />;
+            return <University university={university} key={university.id} moreInfoSearch={this.props.moreInfoSearch}/>;
           })}
           </div>}
         </div>

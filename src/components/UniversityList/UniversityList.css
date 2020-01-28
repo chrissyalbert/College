@@ -5,7 +5,10 @@
     margin: 3rem 0;
     
 }
-
+.noResults {
+    background-color: white;
+    padding: 2rem;
+}
 /*
 
 */

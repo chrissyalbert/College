@@ -12,11 +12,14 @@ class App extends React.Component {
     super(props);
     this.state = {
       universities: [],
-      searchOn: true
+      searchOn: true,
+      moreInfo: null
     }
     this.searchSchools = this.searchSchools.bind(this);
     this.newSearch =this.newSearch.bind(this);
     this.hideSearchbox = this.hideSearchbox.bind(this);
+    this.moreInfoSearch = this.moreInfoSearch.bind(this);
+    this.setStateAsync = this.setStateAsync.bind(this);
   }
 
   searchSchools(obj) {
@@ -24,6 +27,17 @@ class App extends React.Component {
     this.hideSearchbox();
     }
   
+  setStateAsync(state) {
+    return new Promise((resolve) => {
+      this.setState(state, resolve);
+    });
+    }
+
+  async moreInfoSearch(obj) {
+    await Scorecard.moreInfoSearch(obj).then(university => this.setStateAsync({moreInfo: university}));
+    console.log(this.state);
+  }
+
   hideSearchbox() {
     this.setState({
       searchOn: false
@@ -35,6 +49,7 @@ class App extends React.Component {
       searchOn: true
     }, () => console.log(this.state));
     event.preventDefault();
+    sessionStorage.clear();
   }
  
   render() {
@@ -44,10 +59,7 @@ class App extends React.Component {
         <header className="App-header">
           <h1>College Costs... What?</h1>
         </header>
-        
           <Jumbotron >
-      
-          
           {
             searchOn ? <Searchbox searchSchools={universities => this.searchSchools(universities)}  /> : 
             <Button className="App-submit" variant='primary' size="lg" block onClick={this.newSearch}>
@@ -55,7 +67,7 @@ class App extends React.Component {
             </Button>
             }
             </Jumbotron>
-          {this.state.universities !== [] && <UniversityList universities={this.state.universities} searchOn={this.state.searchOn} hideSearchbox={this.hideSearchbox} />}
+          {this.state.universities !== [] && <UniversityList universities={this.state.universities} searchOn={this.state.searchOn} hideSearchbox={this.hideSearchbox} moreInfoSearch={this.moreInfoSearch}/>}
           
         
       </Container>

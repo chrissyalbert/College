@@ -26,13 +26,17 @@ export function completeQueryString(obj) {
   return querystring;
 };
 
-
-/*
-function singleQueryString(params) {
-  let queryString = Object.keys(params).map(key => key + '=' + params[key]).join('&');
-  console.log(queryString);
-  return queryString;
+export function moreInfoQueryString(obj) {
+  let querystring = "?";
+  querystring += queryString.stringify(apiObject);
+  querystring += '&';
+  querystring += queryString.stringify(obj);
+  //TODO update the following string to include more possible info
+  querystring += `&_fields=id,school.name,school.school_url,school.city,school.state,school.price_calculator_url,latest.admissions.admission_rate.overall,latest.admissions.sat_scores.average.overall,latest.student.size,latest.cost.attendance.academic_year,latest.cost.attendance.program_year`;
+  return querystring;
 }
+/*
+
 
 let test = {"_fields": ["id", "school.name", "school.school_url", "school.city", "school.state", "school.price_calculator_url", "latest.admissions.admission_rate.overall", "latest.admissions.sat_scores.average.overall", "latest.student.size", "latest.cost.attendance.academic_year", "latest.cost.attendance.program_year"]};
     let result = queryString.stringify(test, {arrayFormat: 'comma'}, {encode: false}, {skipNull: true});

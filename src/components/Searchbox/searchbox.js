@@ -56,7 +56,7 @@ class Searchbox extends React.Component {
     await this.setStateAsync({
       name: {"school.name": value}
     });
-    console.log(this.state); 
+    console.log(this.state);
     this.props.searchSchools(this.state);
      
   }
@@ -121,9 +121,10 @@ class Searchbox extends React.Component {
       selectedPrograms: null,
       missingDegree: null
     });
-    console.log(this.state);
-    console.log(event);
-    
+    let store = JSON.stringify(this.state);
+    console.log(store);
+    let backToObject = JSON.parse(store);
+    console.log(backToObject);
     this.props.searchSchools(this.state);
     }  
 
@@ -145,6 +146,9 @@ class Searchbox extends React.Component {
       this.handleprogramDegree(event);
       event.preventDefault();
     } else {
+      let store = JSON.stringify(this.state);
+      console.log(store);
+      //sessionStorage.setItem();
       this.props.searchSchools(this.state);
       event.preventDefault();
     }
@@ -156,7 +160,7 @@ class Searchbox extends React.Component {
         <Accordion className="row justify-content-center">
           <Card className="col-lg-6 box" >
             <Accordion.Toggle className="search" as={Card.Header} variant="link" eventKey="0">
-                Search for a school by name.
+                Search for a school by <strong>Name</strong>
             </Accordion.Toggle>
             <Accordion.Collapse eventKey="0">
               <Card.Body id="name">
@@ -164,7 +168,7 @@ class Searchbox extends React.Component {
               </Card.Body>
             </Accordion.Collapse>
             <Accordion.Toggle className="search" as={Card.Header} variant="link" eventKey="1">
-                  Narrow your search by Location
+                  Narrow your search by <strong>Location</strong> 
             </Accordion.Toggle>
             <Accordion.Collapse eventKey="1">
               <Card.Body>
@@ -173,7 +177,7 @@ class Searchbox extends React.Component {
               </Card.Body>
             </Accordion.Collapse>
             <Accordion.Toggle className="search" as={Card.Header} variant="link" eventKey="2">
-                  Narrow your search by Program
+                  Narrow your search by <strong>Program</strong>
             </Accordion.Toggle>
             <Accordion.Collapse eventKey="2">
               <Card.Body>
@@ -183,7 +187,7 @@ class Searchbox extends React.Component {
               </Card.Body>
             </Accordion.Collapse>
             <Accordion.Toggle className="search" id="last" as={Card.Header} variant="link" eventKey="3">
-                  Narrow your search by school type
+                  Narrow your search by <strong>Public/Private</strong> and <strong>Size</strong> options
             </Accordion.Toggle>
             <Accordion.Collapse eventKey="3">
               <Card.Body>
