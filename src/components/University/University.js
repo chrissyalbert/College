@@ -6,7 +6,7 @@ import { Location } from './Location';
 import { SizeComponent } from './Size';
 import { Website } from './Website';
 import { AdmissionsComponent } from './Admissions';
-import { SATComponent } from './SAT';
+import { SATComponent, ACTComponent } from './SAT';
 import { CostAcademicComponent, ProgramCostComponent } from './UniversityCost';
 
 class University extends React.Component {
@@ -20,7 +20,6 @@ class University extends React.Component {
   handleClick(obj) {
     this.props.moreInfoSearch(obj);
   }
-
   render() {
     return (  
         <Card className="University">
@@ -38,6 +37,9 @@ class University extends React.Component {
                     }
                     {this.props.university["Average SAT score"] && 
                     <SATComponent university={this.props.university} />
+                    }
+                    {this.props.university["Average ACT score"] && 
+                    <ACTComponent university={this.props.university} />
                     }
                   </section>
                   <section className="University-cost">

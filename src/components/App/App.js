@@ -6,6 +6,7 @@ import UniversityList from '../UniversityList/UniversityList';
 import Searchbox from '../Searchbox/searchbox';
 import { Scorecard } from '../../util/scorecard';
 import Button from 'react-bootstrap/Button';
+import { MoreInfo } from '../MoreInformation/MoreInfo';
 
 class App extends React.Component {
   constructor(props) {
@@ -22,6 +23,46 @@ class App extends React.Component {
     this.setStateAsync = this.setStateAsync.bind(this);
   }
 
+  /*
+  function Content({ this.state }) {
+  switch(state) {
+    case 'info':
+      return <Info text={text} />;
+    case 'warning':
+      return <Warning text={text} />;
+    case 'error':
+      return <Error text={text} />;
+    default:
+      return null;
+  }
+}
+renderSwitch(this.state) {
+  switch(this.state) {
+    case 'searchOn':
+      return <Searchbox searchSchools={universities => this.searchSchools(universities)}  />;
+    case 'universities':
+      return <UniversityList universities={this.state.universities} searchOn={this.state.searchOn} hideSearchbox={this.hideSearchbox} moreInfoSearch={this.moreInfoSearch}/> ;
+    case 'moreInfo':
+      return  <MoreInfo university={this.state.moreInfo}/> ;
+    default:
+      return <Searchbox searchSchools={universities => this.searchSchools(universities)}  />;
+  }
+}
+render() {
+  return (
+    <div>
+      <div>
+          // removed for brevity
+      </div>
+      {this.renderSwitch(param)}
+      <div>
+          // removed for brevity
+      </div>
+    </div>
+  );
+}
+*/
+
   searchSchools(obj) {
     Scorecard.search(obj).then(universities => {this.setState({universities})});
     this.hideSearchbox();
@@ -35,6 +76,9 @@ class App extends React.Component {
 
   async moreInfoSearch(obj) {
     await Scorecard.moreInfoSearch(obj).then(university => this.setStateAsync({moreInfo: university}));
+    this.setState(state => ({
+      moreInfo: state.moreInfo.pop()
+    }))
     console.log(this.state);
   }
 
@@ -67,6 +111,7 @@ class App extends React.Component {
             </Button>
             }
             </Jumbotron>
+            {this.state.moreInfo && <MoreInfo university={this.state.moreInfo}/> }
           {this.state.universities !== [] && <UniversityList universities={this.state.universities} searchOn={this.state.searchOn} hideSearchbox={this.hideSearchbox} moreInfoSearch={this.moreInfoSearch}/>}
           
         

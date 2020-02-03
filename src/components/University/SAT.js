@@ -30,6 +30,39 @@ export function SATComponent(props) {
         <SATAverage />
         <br/>
         {props.university["Average SAT score"]}
-      </Card.Text></>
+      </Card.Text>
+    </>
+  );
+}
+
+function ACT() {
+  return (
+    <>
+    <Modal.Header closeButton>
+      <Modal.Title>What is the midpoint cumulative ACT score?</Modal.Title>
+    </Modal.Header>
+    <Modal.Body>This is the median cumulative ACT score for accepted students for the latest academic year that data is available. </Modal.Body>
+    </>
+  );
+}
+
+function ACTMidpoint() {
+  return (
+    <ModalWrapper>
+      <ACT />
+    </ModalWrapper>
+  );
+}
+
+export function ACTComponent(props) {
+  return (
+    <>
+      <h6>Midpoint Cumulative ACT score: </h6>
+      <Card.Text>
+        <ACTMidpoint />
+        <br/>
+        {props.university["Average ACT score"]}
+      </Card.Text>
+    </>
   );
 }

@@ -31,12 +31,15 @@ export function moreInfoQueryString(obj) {
   querystring += queryString.stringify(apiObject);
   querystring += '&';
   querystring += queryString.stringify(obj);
+
   //TODO update the following string to include more possible info
-  querystring += `&_fields=id,school.name,school.school_url,school.city,school.state,school.price_calculator_url,latest.admissions.admission_rate.overall,latest.admissions.sat_scores.average.overall,latest.student.size,latest.cost.attendance.academic_year,latest.cost.attendance.program_year`;
+  //querystring += `&_fields=id,school.name,school.school_url,school.city,school.state,school.price_calculator_url,latest.admissions.admission_rate.overall,latest.admissions.sat_scores.average.overall,latest.student.size,latest.cost.attendance.academic_year,latest.cost.attendance.program_year,latest.programs.cip_4_digit`;
   return querystring;
 }
-/*
 
+
+/*
+latest.cost.net_price.consumer.by_income_level.0-30000,latest.cost.net_price.consumer.by_income_level.30001-48000,latest.cost.net_price.consumer.by_income_level.48001-75000,latest.cost.net_price.consumer.by_income_level.75001-110000,latest.cost.net_price.consumer.by_income_level.110001-plus,latest.programs.cip_4_digit.credential.level
 
 let test = {"_fields": ["id", "school.name", "school.school_url", "school.city", "school.state", "school.price_calculator_url", "latest.admissions.admission_rate.overall", "latest.admissions.sat_scores.average.overall", "latest.student.size", "latest.cost.attendance.academic_year", "latest.cost.attendance.program_year"]};
     let result = queryString.stringify(test, {arrayFormat: 'comma'}, {encode: false}, {skipNull: true});
@@ -61,7 +64,16 @@ function singleQueryString(arr) {
   
 }
 
-http://api.data.gov/ed/collegescorecard/v1/schools?api_key=fyVASqX6EDl4algr3QzzJLeTvjB1eN4ueTns4Lbr&school.name=Metro%20State%20College&per_page=24&_fields=id,school.name,school.school_url,school.city,school.state,school.price_calculator_url,latest.admissions.admission_rate.overall,latest.admissions.sat_scores.average.overall,latest.student.size,latest.cost.attendance.academic_year,latest.cost.attendance.program_year
+ 
+http://api.data.gov/ed/collegescorecard/v1/schools?api_key=fyVASqX6EDl4algr3QzzJLeTvjB1eN4ueTns4Lbr&id=110653&_fields=id,school.name,school.school_url,school.city,school.state,school.price_calculator_url,latest.admissions.admission_rate.overall,latest.admissions.sat_scores.average.overall,latest.student.size,latest.cost.attendance.academic_year,latest.cost.attendance.program_year,latest.cost.net_price.consumer,latest.programs.cip_4_digit
+
+latest.programs.cip_4_digit.credential.level
+
+http://api.data.gov/ed/collegescorecard/v1/schools?api_key=fyVASqX6EDl4algr3QzzJLeTvjB1eN4ueTns4Lbr&id=166629
+
+http://api.data.gov/ed/collegescorecard/v1/schools?api_key=fyVASqX6EDl4algr3QzzJLeTvjB1eN4ueTns4Lbr&id=483443
+
+http://api.data.gov/ed/collegescorecard/v1/schools?api_key=fyVASqX6EDl4algr3QzzJLeTvjB1eN4ueTns4Lbr&id=166027
 
 http://api.data.gov/ed/collegescorecard/v1/schools?api_key=fyVASqX6EDl4algr3QzzJLeTvjB1eN4ueTns4Lbr&school.name=Metro%20State%20College&_fields=id&_fields=school.name&_fields=school.school_url&_fields=school.city&_fields=school.state&_fields=school.price_calculator_url&_fields=latest.admissions.admission_rate.overall&_fields=latest.admissions.sat_scores.average.overall&_fields=latest.student.size&_fields=latest.cost.attendance.academic_year&_fields=latest.cost.attendance.program_year&per_page=24
 
