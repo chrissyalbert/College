@@ -33,8 +33,9 @@ class Searchbox extends React.Component {
       selectedOwnership: null,
       selectedSize: null,
       missingDegree: null,
-      results: {"_fields": ["id", "school.name", "school.school_url", "school.city", "school.state", "school.price_calculator_url", "latest.admissions.admission_rate.overall", "latest.admissions.sat_scores.average.overall", "latest.admissions.act_scores.midpoint.cumulative", "latest.student.size", "latest.cost.attendance.academic_year", "latest.cost.attendance.program_year"]},
+      results: {"_fields": ["id", "school.name", "school.school_url", "school.city", "school.state", "school.price_calculator_url", "latest.admissions.admission_rate.overall", "latest.student.size", "latest.cost.attendance.academic_year", "latest.cost.attendance.program_year"]},
       perPage: {"per_page": 21},
+      operating: {"school.operating": 1}
     }
     this.programDegree = false;
     this.onNameChange = this.onNameChange.bind(this);

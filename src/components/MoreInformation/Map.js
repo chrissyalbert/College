@@ -11,7 +11,8 @@ export class OLMap extends React.Component {
         this.updateDimensions = this.updateDimensions.bind(this);
         this.state = {
           height: 400,
-          width: 400
+          width: 400,
+          newSearch: null
         };
         
     }
@@ -24,10 +25,6 @@ export class OLMap extends React.Component {
         } else {
           h = 330;
         }
-          
-              
-
-        
         this.setState({height: h, width: h});
     }
     
@@ -55,6 +52,13 @@ export class OLMap extends React.Component {
           zoom: 12
         })
     })
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    // Typical usage (don't forget to compare props):
+    if ((this.props.university.longitude !== prevProps.university.longitude || this.props.university.latitude !== prevProps.university.latitude)  && !prevState.newSearch) {
+      this.setState({newSearch: true});
+    }
   }
     
   componentWillUnmount(){

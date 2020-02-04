@@ -21,9 +21,6 @@ export const Scorecard = {
             state: university["school.state"],
             URL: university["school.school_url"],
             size: university["latest.student.size"],
-            "School Price Calculator": university["school.price_calculator_url"],
-            "Average SAT score": university["latest.admissions.sat_scores.average.overall"],
-            "Average ACT score": university["latest.admissions.act_scores.midpoint.cumulative"],
             "Admission Rate": university["latest.admissions.admission_rate.overall"],
             costAcademic: university["latest.cost.attendance.academic_year"],
             costProgram: university["latest.cost.attendance.program_year"]
@@ -48,6 +45,8 @@ export const Scorecard = {
             state: university.school.state,
             URL: university.school.school_url,
             size: university.latest.student.size,
+            ownership: university.school.ownership,
+            locale: university.school.locale,
             "School Price Calculator": university.school.price_calculator_url,
             "Average SAT score": university.latest.admissions.sat_scores.average.overall,
             "Average ACT score": university.latest.admissions.act_scores.midpoint.cumulative,

@@ -75,6 +75,7 @@ render() {
     }
 
   async moreInfoSearch(obj) {
+    this.setState({moreInfo: null});
     await Scorecard.moreInfoSearch(obj).then(university => this.setStateAsync({moreInfo: university}));
     this.setState(state => ({
       moreInfo: state.moreInfo.pop()
@@ -90,7 +91,9 @@ render() {
 
   newSearch(event) {
     this.setState({
-      searchOn: true
+      searchOn: true,
+      moreInfo: null,
+      
     }, () => console.log(this.state));
     event.preventDefault();
     sessionStorage.clear();

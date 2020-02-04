@@ -25,7 +25,7 @@ function SizeSchool() {
 export function SizeComponent(props) {
   return (
     <section className="University-size">
-      <h6>Size</h6>
+      <h6>Size:</h6>
         <Card.Text>
           <SizeSchool />
           <br/>

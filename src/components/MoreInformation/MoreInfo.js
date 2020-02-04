@@ -4,14 +4,14 @@ import './MoreInfo.css'
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { Location } from './../University/Location'
+import { Location } from './../University/Location';
 import { SizeComponent } from './../University/Size';
+import { Ownership, Graduation, Locale } from './Components';
 import { Website } from './../University/Website';
+import { SATComponent, ACTComponent } from './../University/SAT';
 import { OLMap } from './Map';
 
 export class MoreInfo extends React.Component {
-  
-  
   render() {
     return(
       <Container className="moreInfo">
@@ -32,14 +32,18 @@ export class MoreInfo extends React.Component {
           <Col md={4} sm={6}>
             {this.props.university.size && 
             <SizeComponent university={this.props.university} /> } 
+            <Ownership university={this.props.university} />
+            <Locale university={this.props.university} />
           </Col>
           <Col md={4} sm={6} >
-            
+            {this.props.university["Average SAT score"] && 
+            <SATComponent university={this.props.university} />
+            }
+            {this.props.university["Average ACT score"] && 
+            <ACTComponent university={this.props.university} />
+            }
             {this.props.university["Graduation Rate"] &&
-            <>
-            <h6>Graduation Rate</h6>
-            <p>{Math.round(this.props.university["Graduation Rate"] * 100) + '%'}</p>
-            </>
+            <Graduation university={this.props.university} />
             } 
             
           </Col>
