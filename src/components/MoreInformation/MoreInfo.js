@@ -6,8 +6,10 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Location } from './../University/Location';
 import { SizeComponent } from './../University/Size';
-import { Ownership, Graduation, Locale } from './Components';
+import { Ownership, Graduation, Locale, Men, Women, Minority } from './Components';
+import { Religious } from './Religious';
 import { Website } from './../University/Website';
+import { AdmissionsComponent } from './../University/Admissions';
 import { SATComponent, ACTComponent } from './../University/SAT';
 import { OLMap } from './Map';
 
@@ -45,7 +47,13 @@ export class MoreInfo extends React.Component {
             {this.props.university["Graduation Rate"] &&
             <Graduation university={this.props.university} />
             } 
-            
+            {this.props.university["Admission Rate"] && 
+            <AdmissionsComponent university={this.props.university} />
+            }
+            <Men university={this.props.university} />
+            <Women university={this.props.university} />
+            <Minority university={this.props.university} />
+            <Religious university={this.props.university} />
           </Col>
 
         </Row>
@@ -58,5 +66,5 @@ export class MoreInfo extends React.Component {
 }
 
 /*
-
+<Transfer university={this.props.university} /> 
 */

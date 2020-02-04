@@ -54,6 +54,16 @@ export const Scorecard = {
             costAcademic: university.latest.cost.attendance.academic_year,
             costProgram: university.latest.cost.attendance.program_year,
             "Graduation Rate": university.latest.completion.rate_suppressed.overall,
+            "Transfer Rate": university.latest.completion.transfer_rate["4yr"].full_time,
+            men: university.school.men_only,
+            women: university.school.women_only,
+            historically: university.school.minority_serving.historically_black,
+            predominantly: university.school.minority_serving.predominantly_black,
+            alaskan: university.school.minority_serving.annh,
+            tribal: university.school.minority_serving.tribal,
+            asian: university.school.minority_serving.aanipi,
+            native: university.school.minority_serving.nant,
+            religious: university.school.religious_affiliation,
             longitude: university.location.lon,
             latitude: university.location.lat
           }));

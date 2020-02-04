@@ -79,3 +79,74 @@ export function Locale(props) {
       return null;
   }
 }
+
+export function Men(props) {
+  let men = props.university.men === 1;
+  return (
+    <>
+   { men ? 
+    <>
+    <h6>Accepts Male Students Only</h6>
+    </> : null
+   }
+   </>
+  );
+}
+
+export function Women(props) {
+  let women = props.university.women === 1;
+  return (
+    <>
+   { women ? 
+    <>
+    <h6>Accepts Female Students Only</h6>
+    </> : null
+   }
+   </>
+  );
+}
+
+export function Minority(props) {
+  let historically = props.university.historically === 1;
+  let predominantly = props.university.predominantly === 1;
+  let alaskan = props.university.alaskan === 1;
+  let tribal = props.university.tribal === 1;
+  let asian = props.university.asian === 1;
+  let native = props.university.native === 1;
+  return (
+    <>
+   { historically ? <><h6>Historically Black University</h6></> : null }
+   { predominantly ? <><h6>Predominantly Black University</h6></> : null }
+   { alaskan ? <><h6>University Serving Alaskan Native or Hawaaian Native Students</h6></> : null }
+   { tribal ? <><h6>Tribal University</h6></> : null }
+   { asian ? <><h6>University Serving Asian American, Native American, and Pacific Islander Students</h6></> : null }
+   { native ? <><h6>Native American University without Tribal Affiliation</h6></> : null }
+    </>
+  )
+}
+
+
+
+export function Transfer(props) {
+  return (
+    <>
+      <h6>Transfer Rate:</h6>
+      <p>{Math.round(props.university["Transfer Rate"] * 100) + '%'}</p>
+    </>
+  );
+}
+
+/*
+let transfer = props.university["Transfer Rate"];
+  let style = {display: 'none'};
+  if (transfer ==0) {
+    return <div style={style}></div>
+    
+  }
+
+if (!props.university["Transfer Rate"]) {
+  return null;
+} else if (props.university["Transfer Rate"] === 0) {
+  return null;
+} 
+*/
