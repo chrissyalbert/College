@@ -125,8 +125,6 @@ export function Minority(props) {
   )
 }
 
-
-
 export function Transfer(props) {
   return (
     <>

@@ -6,12 +6,15 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Location } from './../University/Location';
 import { SizeComponent } from './../University/Size';
+import { CostAcademicComponent, ProgramCostComponent } from './../University/UniversityCost';
+import { NetCost } from './NetCost';
 import { Ownership, Graduation, Locale, Men, Women, Minority } from './Components';
 import { Religious } from './Religious';
 import { Website } from './../University/Website';
 import { AdmissionsComponent } from './../University/Admissions';
 import { SATComponent, ACTComponent } from './../University/SAT';
 import { OLMap } from './Map';
+import { Programs } from './Programs';
 
 export class MoreInfo extends React.Component {
   render() {
@@ -29,13 +32,17 @@ export class MoreInfo extends React.Component {
             <Website university={this.props.university} />
             <Location university={this.props.university} />
             <OLMap className="map" university={this.props.university} />
-            
           </Col>
           <Col md={4} sm={6}>
             {this.props.university.size && 
             <SizeComponent university={this.props.university} /> } 
             <Ownership university={this.props.university} />
             <Locale university={this.props.university} />
+            {this.props.university.costAcademic && 
+            <CostAcademicComponent university={this.props.university} /> }
+            {this.props.university.costProgram && 
+            <ProgramCostComponent university={this.props.university} /> }
+            <NetCost university={this.props.university} />
           </Col>
           <Col md={4} sm={6} >
             {this.props.university["Average SAT score"] && 
@@ -57,14 +64,25 @@ export class MoreInfo extends React.Component {
           </Col>
 
         </Row>
-        <Row id="block">
-        
+        <Row>
+          <Col>
+            <h3>Earnings and Student Loan Debt</h3>
+            <p>The following is a list of programs that has data available for first year post graduation earnings and student loan debt. This data only tracks students who have received federal financial aid while attending this school. Students who received private loans are not included in this data. The cumulative debt (median or mean totals) includes only the loan dispursement amount and not any accrued interest.</p>
+          </Col>
         </Row>
+
+        <Row>
+          <Programs university={this.props.university} />
+          </Row>
+        
+        
       </Container>
     );
   }
 }
 
 /*
+
+<Row className="justify-content-center" ></Row>
 <Transfer university={this.props.university} /> 
 */

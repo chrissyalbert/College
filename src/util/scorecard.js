@@ -37,6 +37,8 @@ export const Scorecard = {
           console.log(data.data.results);
           console.log(data.data.results[0].location);
           console.log(data.data.results[0].latest);
+          console.log(data.data.results[0].latest.programs.cip_4_digit);
+          console.log(data.data.results[0].latest.cost.net_price.consumer.by_income_level);
           return data.data.results.map(university => ({
             //update returned data to include more information
             id: university.id,
@@ -65,13 +67,18 @@ export const Scorecard = {
             native: university.school.minority_serving.nant,
             religious: university.school.religious_affiliation,
             longitude: university.location.lon,
-            latitude: university.location.lat
+            latitude: university.location.lat,
+            programs: university.latest.programs.cip_4_digit,
+            net: university.latest.cost.net_price.consumer.by_income_level
           }));
         })
         .catch(error => console.error(error));
   }
 };
-
+/*
+latest.cost.net_price.consumer.by_income_level.0-30000,
+latest.cost.net_price.consumer.by_income_level.30001-48000,latest.cost.net_price.consumer.by_income_level.48001-75000,latest.cost.net_price.consumer.by_income_level.75001-110000,latest.cost.net_price.consumer.by_income_level.110001-plus,
+*/
 
     /*
 ,
