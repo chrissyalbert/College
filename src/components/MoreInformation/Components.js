@@ -134,6 +134,14 @@ export function Transfer(props) {
   );
 }
 
+export function PercentAid(props) {
+  return (
+    <>
+      <h6>Percent of Students with Federal Loans:</h6>
+      <p>{Math.round(props.university.percent * 100) + '%'}</p>
+    </>
+  );
+}
 /*
 let transfer = props.university["Transfer Rate"];
   let style = {display: 'none'};

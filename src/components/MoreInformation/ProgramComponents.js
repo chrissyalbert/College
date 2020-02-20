@@ -7,9 +7,7 @@ import './ProgramComponents.css';
 
 function Contents(props) {
   return (
-    
         <Card className="col-md-4 mb-3 info-card" > 
-              
               <Accordion.Toggle className="title" as={Card.Header} eventKey={props.eventKey}  >
         {props.infoRow.major.substring(props.infoRow.major.length-1, props.infoRow.major[0])}
       </Accordion.Toggle>
@@ -29,17 +27,12 @@ function Contents(props) {
 }
 export function InfoRow(props) {
   return (
-    <CardGroup>
-     
-        
-        <Accordion >
+    <CardGroup className="moreInfoGroup" >
+        <Accordion className="moreInfoGroup" >
           { props.infoRows.map(infoRow => {
           return <Contents infoRow={infoRow}  key={props.infoRows.indexOf(infoRow)} eventKey={props.infoRows.indexOf(infoRow)} />; })}
         </Accordion>
-        
         </CardGroup>
-     
-    
   );
 }
 

@@ -8,7 +8,7 @@ import { Location } from './../University/Location';
 import { SizeComponent } from './../University/Size';
 import { CostAcademicComponent, ProgramCostComponent } from './../University/UniversityCost';
 import { NetCost } from './NetCost';
-import { Ownership, Graduation, Locale, Men, Women, Minority } from './Components';
+import { Ownership, Graduation, Locale, Men, Women, Minority, PercentAid } from './Components';
 import { Religious } from './Religious';
 import { Website } from './../University/Website';
 import { AdmissionsComponent } from './../University/Admissions';
@@ -42,6 +42,7 @@ export class MoreInfo extends React.Component {
             <CostAcademicComponent university={this.props.university} /> }
             {this.props.university.costProgram && 
             <ProgramCostComponent university={this.props.university} /> }
+            <PercentAid university={this.props.university} />
             <NetCost university={this.props.university} />
           </Col>
           <Col md={4} sm={6} >
@@ -64,12 +65,7 @@ export class MoreInfo extends React.Component {
           </Col>
 
         </Row>
-        <Row>
-          <Col>
-            <h3>Earnings and Student Loan Debt</h3>
-            <p>The following is a list of programs that has data available for first year post graduation earnings and student loan debt. This data only tracks students who have received federal financial aid while attending this school. Students who received private loans are not included in this data. The cumulative debt (median or mean totals) includes only the loan dispursement amount and not any accrued interest.</p>
-          </Col>
-        </Row>
+        
 
         <Row>
           <Programs university={this.props.university} />

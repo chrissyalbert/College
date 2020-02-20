@@ -37,7 +37,7 @@ export const Scorecard = {
           console.log(data.data.results);
           console.log(data.data.results[0].location);
           console.log(data.data.results[0].latest);
-          console.log(data.data.results[0].latest.programs.cip_4_digit);
+          //console.log(data.data.results[0].latest.programs.cip_4_digit);
           console.log(data.data.results[0].latest.cost.net_price.consumer.by_income_level);
           return data.data.results.map(university => ({
             //update returned data to include more information
@@ -69,7 +69,8 @@ export const Scorecard = {
             longitude: university.location.lon,
             latitude: university.location.lat,
             programs: university.latest.programs.cip_4_digit,
-            net: university.latest.cost.net_price.consumer.by_income_level
+            net: university.latest.cost.net_price.consumer.by_income_level,
+            percent: university.latest.aid.federal_loan_rate
           }));
         })
         .catch(error => console.error(error));
