@@ -67,7 +67,7 @@ export function ControlledTabs(props) {
                 <SearchSize selectedSize={props.selectedSize} onSizeChange={props.onSizeChange} />
               </Card.Body>
             </Accordion.Collapse>
-            <Button className="SearchBox-submit" variant='primary' size="lg" block onClick={props.onClick}>
+            <Button className="SearchBox-submit" variant='primary' size="lg"  onClick={props.onClick}>
           Search Schools
         </Button>
         </Accordion>

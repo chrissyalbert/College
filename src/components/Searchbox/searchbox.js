@@ -1,25 +1,7 @@
 import React from 'react';
 import './searchbox.css';
 import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
-import Accordion from 'react-bootstrap/Accordion';
-import { SearchProgram } from "./SearchProgram";
-import { SearchDegree } from "./SearchDegree";
-import { SearchState } from "./SearchState";
-import { SearchRegion } from "./SearchRegion";
-import { SearchOwnership } from "./SearchOwnership";
-import { SearchSize } from "./SearchSize";
-import { SearchName } from "./SearchName";
 import { ControlledTabs } from "./ControlledTabs";
-
-
-function Attention() {
-    return (
-      <span className="attention">
-        Please select both academic field and degree type.
-      </span>
-    );
-} 
 
 class Searchbox extends React.Component {
   constructor(props) {
@@ -159,7 +141,6 @@ class Searchbox extends React.Component {
   render() {
     return (
       <div className="Searchbox" id="position">
-        <div>
         <Card className="col-lg-6 box" >
           <ControlledTabs 
             onNameChange={this.onNameChange}
@@ -179,13 +160,8 @@ class Searchbox extends React.Component {
             onSizeChange={this.onSizeChange}
             onClick={this.handleSearch}
           />
-  
         </Card>
         </div>
-        
-        
-        </div>
-      
     );
   }
 }
@@ -200,48 +176,3 @@ export default Searchbox;
               <Select multi options={urbanOptions} onChange={(selected) => this.setSelected(selected, "school.degree_urbanization", "selectedUrbans")} />
                 </div>
             */
-  /*
-<Card className="col-lg-6 box" >
-            <Accordion.Toggle className="search" as={Card.Header} variant="link" eventKey="0">
-                Search for a school by <strong>Name</strong>
-            </Accordion.Toggle>
-            <Accordion.Collapse eventKey="0">
-              <Card.Body id="name">
-                <SearchName onNameChange={this.onNameChange} />
-              </Card.Body>
-            </Accordion.Collapse>
-            <Accordion.Toggle className="search" as={Card.Header} variant="link" eventKey="1">
-                  Narrow your search by <strong>Location</strong> 
-            </Accordion.Toggle>
-            <Accordion.Collapse eventKey="1">
-              <Card.Body>
-                <SearchRegion selectedRegions={this.state.selectedRegions} onRegionChange={this.onRegionChange} />
-                <SearchState selectedStates={this.state.selectedStates} onStateChange={this.onStateChange} />
-              </Card.Body>
-            </Accordion.Collapse>
-            <Accordion.Toggle className="search" as={Card.Header} variant="link" eventKey="2">
-                  Narrow your search by <strong>Program</strong>
-            </Accordion.Toggle>
-            <Accordion.Collapse eventKey="2">
-              <Card.Body>
-                <SearchProgram selectedPrograms={this.state.selectedPrograms} onProgramChange={this.onProgramChange} resetProgram={this.resetProgram} />
-                {this.state.missingDegree && <Attention /> }
-                {this.programDegree && <SearchDegree selectedDegrees={this.state.selectedDegrees} selectedPrograms={this.state.selectedPrograms} onDegreeChange={this.onDegreeChange} /> } 
-              </Card.Body>
-            </Accordion.Collapse>
-            <Accordion.Toggle className="search" id="last" as={Card.Header} variant="link" eventKey="3">
-                  Narrow your search by <strong>Public/Private</strong> and <strong>Size</strong> options
-            </Accordion.Toggle>
-            <Accordion.Collapse eventKey="3">
-              <Card.Body>
-                <SearchOwnership selectedOwnership={this.state.selectedOwnership} onOwnershipChange={this.onOwnershipChange} /> 
-                <SearchSize selectedSize={this.state.selectedSize} onSizeChange={this.onSizeChange} />
-              </Card.Body>
-            </Accordion.Collapse>
-          </Card>
-
-
-          <Button className="SearchBox-submit" variant='primary' size="lg" block onClick={this.handleSearch}>
-          Search Schools
-        </Button>
-*/
