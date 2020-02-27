@@ -28,6 +28,7 @@ input:focus {
   background-repeat: no-repeat;
   margin-bottom: 0;
   border-radius: 0;
+  height: 100vh;
 }
 /* Reusable Component - Image Container */
 
@@ -69,10 +70,9 @@ input:focus {
   border-radius: 0;
 }
 
-.App-Submit {
-  padding: 5px auto;
-  background-color: rgba(69, 110, 160, 0.75);
-  background-image: linear-gradient(rgb(69,110,160), rgb(146,171,199));
+.App-submit {
+  margin: 2rem auto;
+  width: 50%;
 }
 
 h1 {
@@ -83,3 +83,9 @@ h1 {
   font-size: 1.8rem;
   color: #fff;
 }
+
+/*
+padding: 5px auto;
+  background-color: rgba(69, 110, 160, 0.75);
+  background-image: linear-gradient(rgb(69,110,160), rgb(146,171,199));
+  */

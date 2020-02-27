@@ -37,7 +37,7 @@ class UniversityList extends React.Component {
     
     return (
       <div>
-        {!this.props.searchOn && <div className="UniversityList">
+        {!this.props.searchOn && <div className="UniversityList" id="UniversityList" >
           {this.props.universities.map(university => {
             return <University university={university} key={university.id} moreInfoSearch={this.props.moreInfoSearch}/>;
           })}

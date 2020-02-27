@@ -1,7 +1,6 @@
 import React from 'react';
 import './../University/University.css';
 import './MoreInfo.css'
-import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
@@ -9,7 +8,7 @@ import { Location } from './../University/Location';
 import { SizeComponent } from './../University/Size';
 import { CostAcademicComponent, ProgramCostComponent } from './../University/UniversityCost';
 import { NetCost } from './NetCost';
-import { Ownership, Graduation, Locale, Men, Women, Minority, PercentAid } from './Components';
+import { Ownership, Graduation, Locale, Men, Women, Minority, PercentAid, PriceCalculator } from './Components';
 import { Religious } from './Religious';
 import { Website } from './../University/Website';
 import { AdmissionsComponent } from './../University/Admissions';
@@ -20,10 +19,10 @@ import { Programs } from './Programs';
 export class MoreInfo extends React.Component {
   render() {
     return(
-      <Container className="moreInfo">
+      <div className="moreInfo">
         <Row>
               <Col>
-                <Button>Back to Search Results</Button>
+                <Button onClick={this.props.showUniversityList} >Back to Search Results</Button>
               </Col>
             </Row>
         <Row>
@@ -49,6 +48,7 @@ export class MoreInfo extends React.Component {
             {this.props.university.costProgram && 
             <ProgramCostComponent university={this.props.university} /> }
             <PercentAid university={this.props.university} />
+            <PriceCalculator university={this.props.university} />
             <NetCost university={this.props.university} />
           </Col>
           <Col md={4} sm={6} >
@@ -69,16 +69,11 @@ export class MoreInfo extends React.Component {
             <Minority university={this.props.university} />
             <Religious university={this.props.university} />
           </Col>
-
         </Row>
-        
-
         <Row>
           <Programs university={this.props.university} />
           </Row>
-        
-        
-      </Container>
+      </div>
     );
   }
 }

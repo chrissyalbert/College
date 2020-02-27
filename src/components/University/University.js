@@ -56,9 +56,4 @@ class University extends React.Component {
 
 export default University;
 
-/*
-{this.props.university["School Price Calculator"] && <> 
-                        <h6>School Price Calculator: </h6> <Card.Text><a href={this.props.university["School Price Calculator"]} target="_blank" rel="noopener noreferrer" className="urlStyle">{this.props.university["School Price Calculator"]}</a></Card.Text></>
-                    }
 
-*/

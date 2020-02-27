@@ -12,7 +12,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      universities: [],
+      universities: null,
       searchOn: true,
       moreInfo: null
     }
@@ -21,47 +21,21 @@ class App extends React.Component {
     this.hideSearchbox = this.hideSearchbox.bind(this);
     this.moreInfoSearch = this.moreInfoSearch.bind(this);
     this.setStateAsync = this.setStateAsync.bind(this);
+    this.hideUniversityList = this.hideUniversityList.bind(this);
+    this.showUniversityList = this.showUniversityList.bind(this);
   }
 
-  /*
-  function Content({ this.state }) {
-  switch(state) {
-    case 'info':
-      return <Info text={text} />;
-    case 'warning':
-      return <Warning text={text} />;
-    case 'error':
-      return <Error text={text} />;
-    default:
-      return null;
+
+  hideUniversityList() {
+    let universityList = document.getElementById("UniversityList");
+    universityList.style.display = "none";
   }
-}
-renderSwitch(this.state) {
-  switch(this.state) {
-    case 'searchOn':
-      return <Searchbox searchSchools={universities => this.searchSchools(universities)}  />;
-    case 'universities':
-      return <UniversityList universities={this.state.universities} searchOn={this.state.searchOn} hideSearchbox={this.hideSearchbox} moreInfoSearch={this.moreInfoSearch}/> ;
-    case 'moreInfo':
-      return  <MoreInfo university={this.state.moreInfo}/> ;
-    default:
-      return <Searchbox searchSchools={universities => this.searchSchools(universities)}  />;
+
+  showUniversityList() {
+    this.setState({moreInfo: null});
+    let universityList = document.getElementById("UniversityList");
+    universityList.style.display = "flex";
   }
-}
-render() {
-  return (
-    <div>
-      <div>
-          // removed for brevity
-      </div>
-      {this.renderSwitch(param)}
-      <div>
-          // removed for brevity
-      </div>
-    </div>
-  );
-}
-*/
 
   searchSchools(obj) {
     Scorecard.search(obj).then(universities => {this.setState({universities})});
@@ -91,6 +65,7 @@ render() {
 
   newSearch(event) {
     this.setState({
+      universities: null,
       searchOn: true,
       moreInfo: null,
       
@@ -101,23 +76,21 @@ render() {
  
   render() {
     const searchOn = this.state.searchOn;
+    const moreInfo = this.state.moreInfo;
     return (
       <Container fluid className="App">
         <header className="App-header">
           <h1>College Costs... What?</h1>
         </header>
-          <Jumbotron >
-          {
-            searchOn ? <Searchbox searchSchools={universities => this.searchSchools(universities)}  /> : 
-            <Button className="App-submit" variant='primary' size="lg" block onClick={this.newSearch}>
+        {
+          searchOn ? <Jumbotron > <Searchbox searchSchools={universities => this.searchSchools(universities)}  /> </Jumbotron> : 
+          <Button className="App-submit" variant='primary' size="lg"  onClick={this.newSearch}>
             New Search
-            </Button>
-            }
-            </Jumbotron>
-            {this.state.moreInfo && <MoreInfo university={this.state.moreInfo}/> }
-          {this.state.universities !== [] && <UniversityList universities={this.state.universities} searchOn={this.state.searchOn} hideSearchbox={this.hideSearchbox} moreInfoSearch={this.moreInfoSearch}/>}
-          
-        
+          </Button>
+        }  
+        {
+        moreInfo && <MoreInfo university={this.state.moreInfo} hideUniversityList={this.hideUniversityList()} showUniversityList={this.showUniversityList}  /> }
+          {this.state.universities  && <UniversityList universities={this.state.universities} searchOn={this.state.searchOn} hideSearchbox={this.hideSearchbox} moreInfoSearch={this.moreInfoSearch}/>}
       </Container>
     );
   }
