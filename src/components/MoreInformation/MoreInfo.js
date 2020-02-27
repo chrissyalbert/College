@@ -4,6 +4,7 @@ import './MoreInfo.css'
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
 import { Location } from './../University/Location';
 import { SizeComponent } from './../University/Size';
 import { CostAcademicComponent, ProgramCostComponent } from './../University/UniversityCost';
@@ -20,6 +21,11 @@ export class MoreInfo extends React.Component {
   render() {
     return(
       <Container className="moreInfo">
+        <Row>
+              <Col>
+                <Button>Back to Search Results</Button>
+              </Col>
+            </Row>
         <Row>
           <Col>
             <header>

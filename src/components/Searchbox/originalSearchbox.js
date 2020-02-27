@@ -1,8 +1,11 @@
 import React from 'react';
 import './searchbox.css';
 import Card from 'react-bootstrap/Card';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import Accordion from 'react-bootstrap/Accordion';
+import Nav from 'react-bootstrap/Nav';
 import { SearchProgram } from "./SearchProgram";
 import { SearchDegree } from "./SearchDegree";
 import { SearchState } from "./SearchState";
@@ -10,7 +13,6 @@ import { SearchRegion } from "./SearchRegion";
 import { SearchOwnership } from "./SearchOwnership";
 import { SearchSize } from "./SearchSize";
 import { SearchName } from "./SearchName";
-import { ControlledTabs } from "./ControlledTabs";
 
 
 function Attention() {
@@ -155,53 +157,12 @@ class Searchbox extends React.Component {
       event.preventDefault();
     }
   }
- 
+
   render() {
     return (
       <div className="Searchbox" id="position">
-        <div>
-        <Card className="col-lg-6 box" >
-          <ControlledTabs 
-            onNameChange={this.onNameChange}
-            selectedRegions={this.state.selectedRegions} 
-            onRegionChange={this.onRegionChange}
-            selectedStates={this.state.selectedStates} 
-            onStateChange={this.onStateChange}
-            selectedPrograms={this.state.selectedPrograms} 
-            onProgramChange={this.onProgramChange}
-            missingDegree={this.state.missingDegree}
-            programDegree={this.programDegree}
-            selectedDegrees={this.state.selectedDegrees} 
-            onDegreeChange={this.onDegreeChange}
-            selectedOwnership={this.state.selectedOwnership} 
-            onOwnershipChange={this.onOwnershipChange}
-            selectedSize={this.state.selectedSize} 
-            onSizeChange={this.onSizeChange}
-            onClick={this.handleSearch}
-          />
-  
-        </Card>
-        </div>
-        
-        
-        </div>
-      
-    );
-  }
-}
-
-export default Searchbox;
-
-/*
-<div className="SearchUrban">
-                  <Card.Text>
-        Select the size of your ideal college town.
-              </Card.Text>
-              <Select multi options={urbanOptions} onChange={(selected) => this.setSelected(selected, "school.degree_urbanization", "selectedUrbans")} />
-                </div>
-            */
-  /*
-<Card className="col-lg-6 box" >
+        <Accordion className="row justify-content-center">
+          <Card className="col-lg-6 box" >
             <Accordion.Toggle className="search" as={Card.Header} variant="link" eventKey="0">
                 Search for a school by <strong>Name</strong>
             </Accordion.Toggle>
@@ -239,9 +200,25 @@ export default Searchbox;
               </Card.Body>
             </Accordion.Collapse>
           </Card>
-
-
-          <Button className="SearchBox-submit" variant='primary' size="lg" block onClick={this.handleSearch}>
+        </Accordion>
+        <Button className="SearchBox-submit" variant='primary' size="lg" block onClick={this.handleSearch}>
           Search Schools
         </Button>
+        </div>
+      
+    );
+  }
+}
+
+export default Searchbox;
+
+/*
+<div className="SearchUrban">
+                  <Card.Text>
+        Select the size of your ideal college town.
+              </Card.Text>
+              <Select multi options={urbanOptions} onChange={(selected) => this.setSelected(selected, "school.degree_urbanization", "selectedUrbans")} />
+                </div>
+            */
+  /*
 */
