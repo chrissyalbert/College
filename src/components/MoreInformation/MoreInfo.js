@@ -72,7 +72,6 @@ export class MoreInfo extends React.Component {
           </Col>
         </Row>
         <Row>
-          
           <Programs university={this.props.university} />
           <ScrollButton />
           </Row>

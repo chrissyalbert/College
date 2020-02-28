@@ -64,6 +64,7 @@ class App extends React.Component {
   }
 
   newSearch(event) {
+    sessionStorage.clear();
     this.setState({
       universities: null,
       searchOn: true,
@@ -71,7 +72,7 @@ class App extends React.Component {
       
     }, () => console.log(this.state));
     event.preventDefault();
-    sessionStorage.clear();
+    
   }
  
   render() {

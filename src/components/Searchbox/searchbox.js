@@ -132,7 +132,7 @@ class Searchbox extends React.Component {
     } else {
       let store = JSON.stringify(this.state);
       console.log(store);
-      //sessionStorage.setItem();
+      //sessionStorage.setItem(store);
       this.props.searchSchools(this.state);
       event.preventDefault();
     }
