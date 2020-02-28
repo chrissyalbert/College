@@ -15,6 +15,7 @@ import { AdmissionsComponent } from './../University/Admissions';
 import { SATComponent, ACTComponent } from './../University/SAT';
 import { OLMap } from './Map';
 import { Programs } from './Programs';
+import ScrollButton  from "./../App/scrollToTop"; 
 
 export class MoreInfo extends React.Component {
   render() {
@@ -71,7 +72,9 @@ export class MoreInfo extends React.Component {
           </Col>
         </Row>
         <Row>
+          
           <Programs university={this.props.university} />
+          <ScrollButton />
           </Row>
       </div>
     );

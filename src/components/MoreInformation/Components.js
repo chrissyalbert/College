@@ -1,4 +1,6 @@
 import React from 'react';
+import Modal from 'react-bootstrap/Modal';
+import { ModalWrapper } from './../University/ModalWrapper';
 
 export function Ownership(props) {
   switch(props.university.ownership) {
@@ -27,11 +29,31 @@ export function Ownership(props) {
       return null;
   }
 }
+function Grad() {
+  return (
+    <>
+    <Modal.Header closeButton>
+      <Modal.Title>What is the graduation rate?</Modal.Title>
+    </Modal.Header>
+    <Modal.Body>This rate represents the percentage of full time, first time undergraduates students receive their degree within a specific time period. For students seeking a Bachelor's degree, it represents students that graduate within 6 years. For those seeking an Associate's degree, it represents students that graduate within 3 years. For certificate programs, the time varies by the length of the program.</Modal.Body>
+    </>
+  );
+}
+
+function GraduationRate() {
+  return (
+    <ModalWrapper>
+      <Grad />
+    </ModalWrapper>
+  );
+}
 
 export function Graduation(props) {
   return (
     <>
       <h6>Graduation Rate:</h6>
+      <GraduationRate />
+      <br/>
       <p>{Math.round(props.university["Graduation Rate"] * 100) + '%'}</p>
     </>
   );

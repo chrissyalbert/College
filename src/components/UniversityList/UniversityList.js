@@ -1,6 +1,7 @@
 import React from 'react';
 import './UniversityList.css';
 import University from '../University/University';
+import  ScrollButton  from "./../App/scrollToTop";
 
 function NoResults() {
   return (
@@ -15,8 +16,15 @@ class UniversityList extends React.Component {
     super(props);
     this.state = {}
   }
+  componentDidMount() {
+    if (!this.props.universities.length) {
+      this.setState({
+        noResults: "noResults"
+      });
+    }
+  }
   componentDidUpdate(prevProps, prevState) {
-    if ((this.props.universities !== prevProps.universities) && !this.props.universities.length){
+    if ( (this.props.universities !== prevProps.universities) && !this.props.universities.length){
       console.log(this.props.universities);
       this.setState({
         noResults: "noResults"
@@ -34,15 +42,20 @@ class UniversityList extends React.Component {
     if (this.state.noResults) {
       return <NoResults />;
     }
-    
+    console.log(this.props.universities.length);
     return (
-      <div>
-        {!this.props.searchOn && <div className="UniversityList" id="UniversityList" >
-          {this.props.universities.map(university => {
-            return <University university={university} key={university.id} moreInfoSearch={this.props.moreInfoSearch}/>;
-          })}
-          </div>}
-        </div>
+      <>
+        {
+        !this.props.searchOn && 
+          <>
+            <div className="UniversityList" id="UniversityList" >
+              {this.props.universities.map(university => {
+              return <University university={university} key={university.id} moreInfoSearch={this.props.moreInfoSearch}/>;})}
+            </div>
+            <ScrollButton scrollStepInPx="50" delayInMs="16.66"/>
+          </>
+        }
+      </>
       );
   }
 }
@@ -50,6 +63,8 @@ class UniversityList extends React.Component {
 export default UniversityList;
 
 /*
+this.props.universities !== prevProps.universities) ||
+
 if (this.props.universities === prevProps.universities && !this.props.universities.length & prevState === this.state.noResults) {
       this.setState({
         noResults: null

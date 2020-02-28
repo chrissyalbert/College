@@ -77,6 +77,7 @@ class App extends React.Component {
   render() {
     const searchOn = this.state.searchOn;
     const moreInfo = this.state.moreInfo;
+    const universitiesResults = this.state.universities;
     return (
       <Container fluid className="App">
         <header className="App-header">
@@ -89,8 +90,12 @@ class App extends React.Component {
           </Button>
         }  
         {
-        moreInfo && <MoreInfo university={this.state.moreInfo} hideUniversityList={this.hideUniversityList()} showUniversityList={this.showUniversityList}  /> }
-          {this.state.universities  && <UniversityList universities={this.state.universities} searchOn={this.state.searchOn} hideSearchbox={this.hideSearchbox} moreInfoSearch={this.moreInfoSearch}/>}
+        moreInfo && <MoreInfo university={this.state.moreInfo} hideUniversityList={this.hideUniversityList()} showUniversityList={this.showUniversityList}  /> 
+        }
+        {
+        universitiesResults  && <UniversityList universities={this.state.universities} searchOn={this.state.searchOn} hideSearchbox={this.hideSearchbox} moreInfoSearch={this.moreInfoSearch}/>
+        }
+        
       </Container>
     );
   }
