@@ -25,7 +25,6 @@ class UniversityList extends React.Component {
   }
   componentDidUpdate(prevProps, prevState) {
     if ( (this.props.universities !== prevProps.universities) && !this.props.universities.length){
-      console.log(this.props.universities);
       this.setState({
         noResults: "noResults"
       });
@@ -42,7 +41,6 @@ class UniversityList extends React.Component {
     if (this.state.noResults) {
       return <NoResults />;
     }
-    console.log(this.props.universities.length);
     return (
       <>
         {

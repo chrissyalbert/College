@@ -13,6 +13,8 @@ export const Scorecard = {
       return axios.get(`${baseUrl}${querystring}`)
         .then(data => {
           //array of objects
+          console.log(data.data);
+          console.log(JSON.stringify(data.headers));
           console.log(data.data.results);
           return data.data.results.map(university => ({
             id: university.id,
@@ -82,13 +84,7 @@ latest.cost.net_price.consumer.by_income_level.30001-48000,latest.cost.net_price
 */
 
     /*
-,
 
-  moreInfoSearch(obj) {
-    let querystring = completeQueryString(obj);
-  }
-
-    if obj
     */
 
 // const scorecardUrbanInstitute = "https://educationdata.urban.org/api/v1/college-university/scorecard/institutional-characteristics/2000/";
