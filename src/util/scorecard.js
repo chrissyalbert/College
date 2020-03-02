@@ -1,7 +1,7 @@
 import { completeQueryString, moreInfoQueryString } from '../util/querystring';
 
 const axios = require('axios');
-const baseUrl = 'http://api.data.gov/ed/collegescorecard/v1/schools'; 
+const baseUrl = 'https://api.data.gov/ed/collegescorecard/v1/schools'; 
 
 export const Scorecard = {
   search(obj) {
