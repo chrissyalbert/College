@@ -2,10 +2,9 @@ import React from 'react';
 import Table from 'react-bootstrap/Table';
 
 export function NetCost(props) {
-  console.log(props.university.net);
   if (props.university.net && props.university.net["0-30000"]) {
+    //some university results don't have federal aid info for all income levels
    return (
-     
     <Table striped bordered hover size="sm">
     <thead>
       <tr>
@@ -39,15 +38,10 @@ export function NetCost(props) {
         <td>$110,000 and higher</td>
         <td>${props.university.net["110001-plus"].toLocaleString("USD")}</td>
       </tr>}
-      
     </tbody>
   </Table>
   );
   }
-  
   return null;
 }
 
-/*
-${props.university.net["0-30000"].toLocaleString("USD")}
-*/

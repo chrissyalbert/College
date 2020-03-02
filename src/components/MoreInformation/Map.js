@@ -16,8 +16,9 @@ export class OLMap extends React.Component {
         };
         
     }
+    //change size on smaller screens
     updateDimensions(){
-        let h; //= window.innerWidth >= 992 ? window.innerHeight : 400;
+        let h; 
         if (window.innerWidth >=992) {
           h = 382;
         } else if (window.innerWidth>=768) {
@@ -29,7 +30,6 @@ export class OLMap extends React.Component {
     }
     
     componentDidMount(){
-      console.log(this.props.university[0].longitude, this.props.university[0].latitude);
       let coordinates = [this.props.university[0].longitude, this.props.university[0].latitude];
       coordinates = fromLonLat(coordinates);
       window.addEventListener('resize', this.updateDimensions);
@@ -56,7 +56,6 @@ export class OLMap extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    // Typical usage (don't forget to compare props):
     if ((this.props.university.longitude !== prevProps.university.longitude || this.props.university.latitude !== prevProps.university.latitude)  && !prevState.newSearch) {
       this.setState({newSearch: true});
     }
@@ -81,102 +80,3 @@ export class OLMap extends React.Component {
     )
   }
 }
-                /*
-                new TileLayer({
-                    source: new TileWMSSource({
-                        url: 'https://ahocevar.com/geoserver/wms',
-                        params: {
-                            layers: 'topp:states',
-                            'TILED': true,
-                        },
-                        projection: 'EPSG:4326'
-                    }),
-                    name: 'USA'
-                }),
-                */ 
-
-/*
-
- 
-import React from 'react';
-import 'ol/ol.css';
-import TileLayer from 'ol/layer/Tile';
-import OSM from 'ol/source/OSM';
-import {fromLonLat} from 'ol/proj';
-import {Map, View} from 'ol';
-
-export class MapComponent extends React.Component {
-
-  componentDidMount() {
-    console.log(this.props.university[0].longitude, this.props.university[0].latitude);
-    let coordinates = [this.props.university[0].longitude, this.props.university[0].latitude];
-    coordinates = fromLonLat(coordinates);
-    
-    // create map object with feature layer
-    const map = new Map({
-      target: this.refs.mapContainer,
-      layers: [
-        new TileLayer({
-          source: new OSM()
-        })
-      ],
-		//default OSM layer
-      view: View({
-        center: coordinates, 
-        zoom: 2,
-      })
-    });
-
-    // save map and layer references to local state
-    this.setState({ 
-      map: map,
-    });
-
-  }
-
-  //other functions eliminated for brevity
-  render () {
-    return (
-      <div ref="mapContainer"> </div>
-    );
-  }
-}
-
-
-
-
-
-
-export class WebMap extends React.Component {
-  constructor(props) {
-      super(props)
-      this.map = {};
-  }
-
-  componentDidMount() {
-      console.log(this.props.university[0].longitude, this.props.university[0].latitude);
-      let coordinates = [this.props.university[0].longitude, this.props.university[0].latitude];
-      coordinates = fromLonLat(coordinates);
-      this.map = new Map({
-        layers: [
-          new TileLayer({
-            source: new OSM()
-          })
-        ],
-          target: 'map',
-          view: new View({
-              center: coordinates,
-              zoom: 2
-          })
-      });
-  }
-
-  render() {
-      return (
-              <div id="WebMap" className="mapImage">
-                  <div id="map" className="map" ref="olmap"></div>
-              </div>
-      )
-  }
-}
-*/

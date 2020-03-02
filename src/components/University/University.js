@@ -6,7 +6,6 @@ import { Location } from './Location';
 import { SizeComponent } from './Size';
 import { Website } from './Website';
 import { AdmissionsComponent } from './Admissions';
-//import { SATComponent, ACTComponent } from './SAT';
 import { CostAcademicComponent, ProgramCostComponent } from './UniversityCost';
 
 class University extends React.Component {

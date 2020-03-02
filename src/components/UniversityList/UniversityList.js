@@ -4,7 +4,6 @@ import University from '../University/University';
 import  ScrollButton  from "./../App/scrollToTop";
 import { Pages } from './Pages';
 
-
 function NoResults() {
   return (
     <div className="noResults">
@@ -42,7 +41,6 @@ class UniversityList extends React.Component {
   }
 
   render() { 
-    console.log(this.props.totalPages);
     if (this.state.noResults) {
       return <NoResults />;
     }
@@ -72,15 +70,3 @@ class UniversityList extends React.Component {
 }
 
 export default UniversityList;
-
-/*
-//require("bootstrap/less/bootstrap.less");
-{this.props.totalPages && <Pages />}
-this.props.universities !== prevProps.universities) ||
-
-if (this.props.universities === prevProps.universities && !this.props.universities.length & prevState === this.state.noResults) {
-      this.setState({
-        noResults: null
-      });
-    }
-  */

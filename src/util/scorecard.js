@@ -6,9 +6,13 @@ const baseUrl = 'http://api.data.gov/ed/collegescorecard/v1/schools';
 export const Scorecard = {
   search(obj) {
     let querystring = completeQueryString(obj);
+    //builds complete url to College Scorecard API
       return axios.get(`${baseUrl}${querystring}`)
         .then(data => {
-          //array of objects
+          //console.log(data.data.results);
+          //first, find total number of universities results from search
+          let total = data.data.metadata.total;
+          //array of university objects
           let universityArray = data.data.results.map(university => ({
             id: university.id,
             name: university["school.name"],
@@ -20,18 +24,19 @@ export const Scorecard = {
             costAcademic: university["latest.cost.attendance.academic_year"],
             costProgram: university["latest.cost.attendance.program_year"]
           }));
-          let total = data.data.metadata.total;
+          //return array with index 0 as the total number of results, the rest university objects
           let results = [total, universityArray];
           return results.flat();
         })
         .catch(error => console.error(error));
   },
-  
+
   moreInfoSearch(obj) {
     let querystring = moreInfoQueryString(obj);
     console.log(querystring);
       return axios.get(`${baseUrl}${querystring}`)
         .then(data => {
+          //console.log(data.data.results);
           //array of one object
           return data.data.results.map(university => ({
             id: university.id,
@@ -64,6 +69,7 @@ export const Scorecard = {
             programs: university.latest.programs.cip_4_digit,
             net: university.latest.cost.net_price.consumer.by_income_level,
             percent: university.latest.aid.federal_loan_rate
+        
           }));
         })
         .catch(error => console.error(error));

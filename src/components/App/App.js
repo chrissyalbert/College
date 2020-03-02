@@ -12,7 +12,9 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      //universities to display
       universities: null,
+      //universities results from scorecard with index 0 the metadata results
       universitiesResults: null,
       searchOn: true,
       moreInfo: null,
@@ -29,7 +31,7 @@ class App extends React.Component {
     this.getTotalPages = this.getTotalPages.bind(this);
     this.handlePageClick =this.handlePageClick.bind(this);
   }
-
+  //get total pages info from metadata results, clear off index 0 for universities
   getTotalPages() {
     if (this.state.universitiesResults) {
       let universitiesResults = this.state.universitiesResults;
@@ -39,10 +41,11 @@ class App extends React.Component {
     }
     return null;
   }
-
+  //passed down to Pages.js
   handlePageClick = number => {
     this.setState({activePage: number});
     let searchboxState = JSON.parse(sessionStorage.SearchboxState1);
+    //Results from API's page number starts at 0
     searchboxState.currentPage.page = number - 1;
     this.searchSchools(searchboxState);
   };
@@ -62,7 +65,7 @@ class App extends React.Component {
     Scorecard.search(obj).then(universitiesResults => {this.setState({universitiesResults})});
     this.hideSearchbox();
   }
-
+  //make sure to get total pages, clean up universities before render
   componentDidUpdate(prevProps, prevState) {
     if (prevState.universitiesResults !== this.state.universitiesResults) {
       let totalPages = this.getTotalPages();
@@ -83,7 +86,6 @@ class App extends React.Component {
     this.setState(state => ({
       moreInfo: state.moreInfo.pop()
     }))
-    console.log(this.state);
   }
 
   hideSearchbox() {
@@ -91,7 +93,7 @@ class App extends React.Component {
       searchOn: false
     });
   }
-
+  //reset state, bring back Searchbox
   newSearch(event) {
     sessionStorage.clear();
     this.setState({
@@ -114,39 +116,40 @@ class App extends React.Component {
           <h1>College Costs... What?</h1>
         </header>
         {
-          searchOn ? <Jumbotron > <Searchbox searchSchools={universities => this.searchSchools(universities)}  activePage={this.state.activePage}/> </Jumbotron> : 
-          <Button className="App-submit" variant='primary' size="lg"  onClick={this.newSearch}>
+          searchOn ? 
+          <Jumbotron > 
+            <Searchbox 
+              searchSchools={universities => this.searchSchools(universities)}  
+              activePage={this.state.activePage}/> 
+          </Jumbotron> : 
+          <Button 
+            className="App-submit" variant='primary' size="lg"  onClick={this.newSearch}>
             New Search
           </Button>
         }  
         {
-        moreInfo && <MoreInfo university={this.state.moreInfo} hideUniversityList={this.hideUniversityList()} showUniversityList={this.showUniversityList}  /> 
+        moreInfo && 
+          <MoreInfo 
+            university={this.state.moreInfo} 
+            hideUniversityList={this.hideUniversityList()} 
+            showUniversityList={this.showUniversityList}  /> 
         }
         {
-        universitiesResults  && <UniversityList 
-          universitiesResults={this.state.universitiesResults} 
-          universities={this.state.universities} 
-          searchOn={this.state.searchOn} 
-          hideSearchbox={this.hideSearchbox} 
-          moreInfoSearch={this.moreInfoSearch} 
-          totalPages={this.state.totalPages} 
-          activePage={this.state.activePage} 
-          handlePageClick={this.handlePageClick}
-          moreInfo={moreInfo} />
+        universitiesResults  && 
+          <UniversityList 
+            universitiesResults={this.state.universitiesResults} 
+            universities={this.state.universities} 
+            searchOn={this.state.searchOn} 
+            hideSearchbox={this.hideSearchbox} 
+            moreInfoSearch={this.moreInfoSearch} 
+            totalPages={this.state.totalPages} 
+            activePage={this.state.activePage} 
+            handlePageClick={this.handlePageClick}
+            moreInfo={moreInfo} />
         }
-        
       </Container>
     );
   }
 } 
  
 export default App;
-/*
-
-, () => {
-        console.log(this.state);
-      }
-let totalPages = this.getTotalPages();
-    this.setState({totalPages});
-    this.hideSearchbox();
-    */

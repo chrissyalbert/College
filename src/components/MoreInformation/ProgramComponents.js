@@ -35,7 +35,3 @@ export function InfoRow(props) {
         </CardGroup>
   );
 }
-
-/*
-<Col md={6} className="mb-3" ></Col>
-*/

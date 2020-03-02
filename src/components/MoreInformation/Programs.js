@@ -4,7 +4,6 @@ import Col from 'react-bootstrap/Col';
 import { InfoRow } from './ProgramComponents';
 
 export function Programs(props) {
-  console.log(props.university);
   if (props.university.programs) {
     let programs = props.university.programs;
     let rows = programs.map(program => ({
@@ -34,6 +33,5 @@ export function Programs(props) {
       </>
     );
 }
-  
   return null;
 }

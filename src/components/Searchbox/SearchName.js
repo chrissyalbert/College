@@ -6,7 +6,6 @@ export class SearchName extends React.Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
-    //this.onChange = this.onChange.bind(this);
     this.inputRef = React.createRef();
     this.node = this.inputRef.current;
   }
@@ -17,14 +16,7 @@ export class SearchName extends React.Component {
     this.props.onNameChange(this.inputRef.current.value);
     event.preventDefault();
   }
-/*
-  onChange(event) {
-    console.log(event.target.value);
-    console.log(this.inputRef.current.value)
-    this.props.onNameChange(this.inputRef.current.value);
-    event.persist();
-  }
-*/
+
   render() {
     return (
       <Form onSubmit={this.handleSubmit} >
@@ -43,33 +35,3 @@ export class SearchName extends React.Component {
   }
   
 }
-
-
-/*
-onChange={this.onChange}
-
-class NameForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.input = React.createRef();
-  }
-
-  handleSubmit(event) {
-    console.log(this.input.current.value);
-    event.preventDefault();
-  }
-
-  render() {
-    return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          Name:
-          <input type="text" ref={this.input} />
-        </label>
-        <input type="submit" value="Submit" />
-      </form>
-    );
-  }
-}
-*/

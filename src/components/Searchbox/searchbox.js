@@ -35,21 +35,16 @@ class Searchbox extends React.Component {
     this.onOwnershipChange = this.onOwnershipChange.bind(this);
     this.onSizeChange = this.onSizeChange.bind(this);
   }
-
+  //Search button function on name tab/card
   async onNameChange(value) {
-    console.log(value);
     await this.setStateAsync({
       name: {"school.name": value}
     });
-    console.log(this.state);
     let store = JSON.stringify(this.state);
-    console.log(store);
     sessionStorage.setItem(`SearchboxState${this.props.activePage}`, store);
-    console.log(sessionStorage);
     this.props.searchSchools(this.state);
-     
   }
-
+  //if multiple states or regions are selected clean up for query string for API search
   fixDuplicates(possibleArr) {
     if (possibleArr.length > 1) {
       let prop = Object.getOwnPropertyNames(possibleArr[0]);
@@ -62,10 +57,9 @@ class Searchbox extends React.Component {
   setSelected(selected, key, stateObject) {
     let state = selected.map(obj => Object.assign({}, {[key]: obj.value}));
     state = this.fixDuplicates(state);
-    console.log(state);
     this.setState({
       [stateObject]: state
-    }, () => console.log(this.state));
+    });
   }
 
   onRegionChange(selected) {
@@ -75,35 +69,33 @@ class Searchbox extends React.Component {
   onStateChange(selected) {
     this.setSelected(selected, "school.state_fips", "selectedStates");
   }
-
+  //API requires query string with program + degree together
   onProgramChange(selected) {
     let string = selected[0].value;
     this.setState({
     selectedPrograms: string
-    }, () => console.log(this.state));
+    });
     this.programDegree = true;
   }
 
   onDegreeChange(selected) {
-    console.log(selected);
     let string = selected[0].value;
     this.setState({
       selectedDegrees: string,
       missingDegree: null
-    }, () => console.log(this.state));
+    });
   }
-
+  //handle occurences when state is not set right away
   setStateAsync(state) {
     return new Promise((resolve) => {
       this.setState(state, resolve)
     });
   }
-
+  //clears out state.selectedDegrees and state.selectedPrograms so that querystring is correct for API
   async handleprogramDegree(event) {
     let string = this.state.selectedDegrees;
     string += this.state.selectedPrograms;
     let obj = Object.assign({}, {[string]: 1});
-    console.log(obj);
     await this.setStateAsync({
       selectedProgramDegree: obj,
       selectedDegrees: null,
@@ -112,7 +104,6 @@ class Searchbox extends React.Component {
     });
     let store = JSON.stringify(this.state);
     sessionStorage.setItem(`SearchboxState${this.props.activePage}`, store);
-    console.log(sessionStorage);
     this.props.searchSchools(this.state);
     }  
 
@@ -123,8 +114,9 @@ class Searchbox extends React.Component {
   onSizeChange(selected) {
     this.setSelected(selected, "latest.student.size__range", "selectedSize")
   }
-
+  
   handleSearch(event) {
+    //logic to catch missing degree for query string
     if (this.state.selectedPrograms && !this.state.selectedDegrees) {
       this.setState({
         missingDegree: true
@@ -135,9 +127,7 @@ class Searchbox extends React.Component {
       event.preventDefault();
     } else {
       let store = JSON.stringify(this.state);
-   
       sessionStorage.setItem(`SearchboxState${this.props.activePage}`, store);
-      console.log(sessionStorage);
       this.props.searchSchools(this.state);
       //event.preventDefault();
     }
