@@ -73,7 +73,7 @@ export class MoreInfo extends React.Component {
         </Row>
         <Row>
           <Programs university={this.props.university} />
-          <ScrollButton />
+          <ScrollButton scrollStepInPx="50" delayInMs="16.66" />
           </Row>
       </div>
     );

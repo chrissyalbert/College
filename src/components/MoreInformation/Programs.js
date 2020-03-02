@@ -7,7 +7,6 @@ export function Programs(props) {
   console.log(props.university);
   if (props.university.programs) {
     let programs = props.university.programs;
-    console.log(programs);
     let rows = programs.map(program => ({
       degree: program.credential.title,
       major: program.title,
@@ -17,10 +16,6 @@ export function Programs(props) {
       monthly: program.debt.monthly_debt_payment, 
     }));
     let earnings = rows.filter(item => item.earnings);
-    console.log(rows);
-    console.log(earnings);
-    console.log(Object.keys(earnings).length);
-    //condition ? expr1 : expr2  const isEditMode = mode === 'EDIT';
     let hasEarnings = Object.keys(earnings).length > 0;
     
     return (
@@ -38,7 +33,6 @@ export function Programs(props) {
       }
       </>
     );
-    
 }
   
   return null;

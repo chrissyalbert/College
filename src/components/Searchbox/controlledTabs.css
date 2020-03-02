@@ -1,0 +1,10 @@
+@media (max-width: 575.98px) { 
+  .tabs {
+    align-content: space-around;
+    flex-direction: column;
+    
+  }
+  .nav-item {
+    width: 100%;
+  }
+ }

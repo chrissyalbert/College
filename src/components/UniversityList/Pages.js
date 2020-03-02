@@ -1,22 +1,22 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Pagination from 'react-bootstrap/Pagination';
 import './pages.css';
 
 export function Pages(props)  {
-    let active = 1;
-    let items = [];
-    let totalPages = props.totalPages;
-    for (let number = 1; number <= totalPages; number++) {
-  items.push(
-    <Pagination.Item key={number} active={number === active} onClick={() => props.handlePageClick(number)} >
+  let items = [];
+  let totalPages = props.totalPages;
+  const handleClick = number => {
+    console.log(props.activePage);
+    props.handlePageClick(number);
+  };
+
+  for (let number = 1; number <= totalPages; number++) {
+    items.push(
+    <Pagination.Item key={number} active={number === props.activePage} onClick={() => handleClick(number)} >
       {number}
-    </Pagination.Item>,
+    </Pagination.Item>
   );
 }
-
-/*
-
-    */
 
     return (
       <div id="moreResults" className="justify-content-center container py-0 ">
@@ -36,4 +36,7 @@ export function Pages(props)  {
 
  
 /*
+active={number === active}
+active={number === props.activePage}
+className={active && props.activePage === number}
   */

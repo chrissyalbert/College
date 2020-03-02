@@ -58,7 +58,11 @@ class UniversityList extends React.Component {
                 key={university.id} 
                 moreInfoSearch={this.props.moreInfoSearch}/>;})}
             </div>
-            {(this.props.totalPages>1 && !this.props.moreInfo) && <Pages id="Pages" totalPages={this.props.totalPages} handlePageClick={this.props.handlePageClick}/>}
+            {(this.props.totalPages>1 && !this.props.moreInfo) && <Pages 
+              id="Pages" 
+              totalPages={this.props.totalPages} 
+              handlePageClick={this.props.handlePageClick}
+              activePage={this.props.activePage}/>}
             <ScrollButton scrollStepInPx="50" delayInMs="16.66"/>
           </>
         }

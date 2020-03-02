@@ -110,6 +110,9 @@ class Searchbox extends React.Component {
       selectedPrograms: null,
       missingDegree: null
     });
+    let store = JSON.stringify(this.state);
+    sessionStorage.setItem(`SearchboxState${this.props.activePage}`, store);
+    console.log(sessionStorage);
     this.props.searchSchools(this.state);
     }  
 
@@ -134,9 +137,9 @@ class Searchbox extends React.Component {
       let store = JSON.stringify(this.state);
    
       sessionStorage.setItem(`SearchboxState${this.props.activePage}`, store);
- 
+      console.log(sessionStorage);
       this.props.searchSchools(this.state);
-      event.preventDefault();
+      //event.preventDefault();
     }
   }
  

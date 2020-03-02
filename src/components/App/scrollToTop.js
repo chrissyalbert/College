@@ -8,6 +8,7 @@ class ScrollButton extends React.Component {
     this.state = {
         intervalId: 0
     };
+    this.scrollStep = this.scrollStep.bind(this);
   }
   
   scrollStep() {
@@ -18,7 +19,7 @@ class ScrollButton extends React.Component {
   }
   
   scrollToTop() {
-    let intervalId = setInterval(this.scrollStep.bind(this), this.props.delayInMs);
+    let intervalId = setInterval(this.scrollStep, this.props.delayInMs);
     this.setState({ intervalId: intervalId });
   }
   

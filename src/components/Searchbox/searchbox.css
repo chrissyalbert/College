@@ -78,55 +78,6 @@
   height: auto;
 }
 
-.Searchbox-sort-options ul {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 2.22rem;
-  color: #ffffff;
-}
-
-.Searchbox-sort-options li {
-  cursor: pointer;
-  width: 4.33rem;
-  border-bottom: 1px solid #fff;
-  padding: 0 2.58rem .33rem 2.58rem;
-  line-height: 1.13;
-  text-align: center;
-  font-weight: 600;
-  font-size: .83rem;
-  transition: color .25s;
-}
-
-.Searchbox-sort-options li:hover {
-  color: #d4cfcf;
-}
-
-.Searchbox-sort-options li.active,
-.Searchbox-sort-options li.active:hover {
-  border-bottom: 1px solid #f0c36c;
-  color: #f0c36c;
-}
-
-.Searchbox-fields {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 2.88rem;
-}
-
-.Searchbox-fields input {
-  width: 21rem;
-  padding: .66rem 1rem;
-  margin-right: 2.22rem;
-  border: 1px solid #fff;
-  border-radius: 4px;
-  font-size: .77rem;
-  font-weight: 500;
-}
-
-.Searchbox-fields input:last-child {
-  margin-right: 0;
-}
-
 .Searchbox-submit {
   margin-top: 10rem;
   text-align: center;
@@ -135,7 +86,6 @@
 
 .Searchbox-submit:after{
 	content: '';
-	
 	top: 2px;
 	left: 2px;
 	width: calc(100% - 4px);
@@ -154,7 +104,6 @@
 
 .Searchbox-submit a:hover {
   cursor: pointer;
-  
 }
 
 .SearchState, .SearchDegree, .SearchSize {
@@ -165,26 +114,4 @@
   font-weight: bold;
   font-size: 1.2rem;
   color: red;
-}
-
-@media only screen and (max-width: 560px) {
-  /*
-  .Searchbox {
-    background-image: url('background-search-mobile.jpg'); 
-  }
-  */
-  .Searchbox-sort-options ul {
-    margin-left: 2rem;
-    margin-right: 2rem;
-  }
-
-  .Searchbox-fields {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .Searchbox-fields input {
-    margin-right: 0;
-    margin-bottom: .86rem;
-  }
 }

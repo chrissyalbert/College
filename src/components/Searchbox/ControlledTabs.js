@@ -11,6 +11,7 @@ import { SearchRegion } from "./SearchRegion";
 import { SearchOwnership } from "./SearchOwnership";
 import { SearchSize } from "./SearchSize";
 import { SearchName } from "./SearchName";
+import "./controlledTabs.css";
 
 function Attention() {
   return (
@@ -23,7 +24,7 @@ function Attention() {
 export function ControlledTabs(props) {
   const [key, setKey] = useState('about');
   return (
-    <Tabs id="search-menu" activeKey={key} onSelect={k => setKey(k)}>
+    <Tabs className="tabs"id="search-menu" activeKey={key} onSelect={k => setKey(k)}>
       <Tab eventKey="about" title="About">
         <Card.Body>
           <Card.Title>What is this website all about?</Card.Title>

@@ -34,21 +34,16 @@ class App extends React.Component {
     if (this.state.universitiesResults) {
       let universitiesResults = this.state.universitiesResults;
       let total = universitiesResults.shift();
-      //console.log(total, this.state.universitiesResults);
       this.setState({ universities: universitiesResults});
       return Math.ceil(total/21);
     }
-  
     return null;
   }
-
 
   handlePageClick = number => {
     this.setState({activePage: number});
     let searchboxState = JSON.parse(sessionStorage.SearchboxState1);
-    //console.log(searchboxState);
     searchboxState.currentPage.page = number - 1;
-    //console.log(searchboxState);
     this.searchSchools(searchboxState);
   };
   
@@ -69,19 +64,11 @@ class App extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    console.log(
-      `this.state.universitiesResults(♻️ componentDidUpdate)`,
-      this.state.universitiesResults
-    );
-    
     if (prevState.universitiesResults !== this.state.universitiesResults) {
       let totalPages = this.getTotalPages();
-      console.log(totalPages);
-      this.setState({totalPages}, () => {
-        console.log(this.state);
-      });
+      this.setState({totalPages}
+      );
     }
-    
   }
 
   setStateAsync(state) {
@@ -113,10 +100,8 @@ class App extends React.Component {
       searchOn: true,
       moreInfo: null,
       totalPages: null,
-      
-    }, () => console.log(this.state));
+    });
     event.preventDefault();
-    
   }
  
   render() {
@@ -157,6 +142,10 @@ class App extends React.Component {
  
 export default App;
 /*
+
+, () => {
+        console.log(this.state);
+      }
 let totalPages = this.getTotalPages();
     this.setState({totalPages});
     this.hideSearchbox();

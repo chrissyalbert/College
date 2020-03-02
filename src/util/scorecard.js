@@ -3,18 +3,12 @@ import { completeQueryString, moreInfoQueryString } from '../util/querystring';
 const axios = require('axios');
 const baseUrl = 'http://api.data.gov/ed/collegescorecard/v1/schools'; 
 
-
-
 export const Scorecard = {
   search(obj) {
     let querystring = completeQueryString(obj);
-      //console.log(`${baseUrl}${querystring}`);
-      console.log(querystring);
       return axios.get(`${baseUrl}${querystring}`)
         .then(data => {
           //array of objects
-          console.log(data.data.metadata);
-          console.log(data.data.results);
           let universityArray = data.data.results.map(university => ({
             id: university.id,
             name: university["school.name"],
@@ -26,27 +20,20 @@ export const Scorecard = {
             costAcademic: university["latest.cost.attendance.academic_year"],
             costProgram: university["latest.cost.attendance.program_year"]
           }));
-          console.log(universityArray);
           let total = data.data.metadata.total;
-          console.log(total);
           let results = [total, universityArray];
           return results.flat();
         })
         .catch(error => console.error(error));
   },
+  
   moreInfoSearch(obj) {
     let querystring = moreInfoQueryString(obj);
     console.log(querystring);
       return axios.get(`${baseUrl}${querystring}`)
         .then(data => {
           //array of one object
-          console.log(data.data.results);
-          console.log(data.data.results[0].location);
-          console.log(data.data.results[0].latest);
-          //console.log(data.data.results[0].latest.programs.cip_4_digit);
-          console.log(data.data.results[0].latest.cost.net_price.consumer.by_income_level);
           return data.data.results.map(university => ({
-            //update returned data to include more information
             id: university.id,
             name: university.school.name,
             city: university.school.city,
@@ -82,20 +69,5 @@ export const Scorecard = {
         .catch(error => console.error(error));
   }
 };
-/*
-latest.cost.net_price.consumer.by_income_level.0-30000,
-latest.cost.net_price.consumer.by_income_level.30001-48000,latest.cost.net_price.consumer.by_income_level.48001-75000,latest.cost.net_price.consumer.by_income_level.75001-110000,latest.cost.net_price.consumer.by_income_level.110001-plus,
-*/
 
-    /*
-
-    */
-
-// const scorecardUrbanInstitute = "https://educationdata.urban.org/api/v1/college-university/scorecard/institutional-characteristics/2000/";
-// const ipedsUrbanInstitute = 'https://educationdata.urban.org/api/v1/college-university/ipeds/institutional-characteristics/1990/';
-/*
-
-*/
-/*  
-*/
 
