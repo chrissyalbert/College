@@ -31,7 +31,7 @@ export class SearchName extends React.Component {
         <Form.Group controlId="formSchoolName">
           <Form.Label>Name of School</Form.Label>
           <Form.Control className="name" type="text" placeholder="Enter name" ref={this.inputRef} name="name" />
-          <input className="submit btn-primary" type="submit" value="Submit" />
+          <input className="submit btn-primary" type="submit" value="Search" />
         </Form.Group>
         </Form>
     );

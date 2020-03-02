@@ -13,8 +13,11 @@ class App extends React.Component {
     super(props);
     this.state = {
       universities: null,
+      universitiesResults: null,
       searchOn: true,
-      moreInfo: null
+      moreInfo: null,
+      activePage: 1,
+      totalPages: null
     }
     this.searchSchools = this.searchSchools.bind(this);
     this.newSearch =this.newSearch.bind(this);
@@ -23,9 +26,32 @@ class App extends React.Component {
     this.setStateAsync = this.setStateAsync.bind(this);
     this.hideUniversityList = this.hideUniversityList.bind(this);
     this.showUniversityList = this.showUniversityList.bind(this);
+    this.getTotalPages = this.getTotalPages.bind(this);
+    this.handlePageClick =this.handlePageClick.bind(this);
+  }
+
+  getTotalPages() {
+    if (this.state.universitiesResults) {
+      let universitiesResults = this.state.universitiesResults;
+      let total = universitiesResults.shift();
+      //console.log(total, this.state.universitiesResults);
+      this.setState({ universities: universitiesResults});
+      return Math.ceil(total/21);
+    }
+  
+    return null;
   }
 
 
+  handlePageClick = number => {
+    this.setState({activePage: number});
+    let searchboxState = JSON.parse(sessionStorage.SearchboxState1);
+    //console.log(searchboxState);
+    searchboxState.currentPage.page = number - 1;
+    //console.log(searchboxState);
+    this.searchSchools(searchboxState);
+  };
+  
   hideUniversityList() {
     let universityList = document.getElementById("UniversityList");
     universityList.style.display = "none";
@@ -38,10 +64,26 @@ class App extends React.Component {
   }
 
   searchSchools(obj) {
-    Scorecard.search(obj).then(universities => {this.setState({universities})});
+    Scorecard.search(obj).then(universitiesResults => {this.setState({universitiesResults})});
     this.hideSearchbox();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    console.log(
+      `this.state.universitiesResults(♻️ componentDidUpdate)`,
+      this.state.universitiesResults
+    );
+    
+    if (prevState.universitiesResults !== this.state.universitiesResults) {
+      let totalPages = this.getTotalPages();
+      console.log(totalPages);
+      this.setState({totalPages}, () => {
+        console.log(this.state);
+      });
     }
-  
+    
+  }
+
   setStateAsync(state) {
     return new Promise((resolve) => {
       this.setState(state, resolve);
@@ -67,8 +109,10 @@ class App extends React.Component {
     sessionStorage.clear();
     this.setState({
       universities: null,
+      universitiesResults: null,
       searchOn: true,
       moreInfo: null,
+      totalPages: null,
       
     }, () => console.log(this.state));
     event.preventDefault();
@@ -85,7 +129,7 @@ class App extends React.Component {
           <h1>College Costs... What?</h1>
         </header>
         {
-          searchOn ? <Jumbotron > <Searchbox searchSchools={universities => this.searchSchools(universities)}  /> </Jumbotron> : 
+          searchOn ? <Jumbotron > <Searchbox searchSchools={universities => this.searchSchools(universities)}  activePage={this.state.activePage}/> </Jumbotron> : 
           <Button className="App-submit" variant='primary' size="lg"  onClick={this.newSearch}>
             New Search
           </Button>
@@ -94,7 +138,16 @@ class App extends React.Component {
         moreInfo && <MoreInfo university={this.state.moreInfo} hideUniversityList={this.hideUniversityList()} showUniversityList={this.showUniversityList}  /> 
         }
         {
-        universitiesResults  && <UniversityList universities={this.state.universities} searchOn={this.state.searchOn} hideSearchbox={this.hideSearchbox} moreInfoSearch={this.moreInfoSearch}/>
+        universitiesResults  && <UniversityList 
+          universitiesResults={this.state.universitiesResults} 
+          universities={this.state.universities} 
+          searchOn={this.state.searchOn} 
+          hideSearchbox={this.hideSearchbox} 
+          moreInfoSearch={this.moreInfoSearch} 
+          totalPages={this.state.totalPages} 
+          activePage={this.state.activePage} 
+          handlePageClick={this.handlePageClick}
+          moreInfo={moreInfo} />
         }
         
       </Container>
@@ -103,3 +156,8 @@ class App extends React.Component {
 } 
  
 export default App;
+/*
+let totalPages = this.getTotalPages();
+    this.setState({totalPages});
+    this.hideSearchbox();
+    */

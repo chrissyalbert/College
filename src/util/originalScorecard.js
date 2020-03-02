@@ -14,8 +14,9 @@ export const Scorecard = {
         .then(data => {
           //array of objects
           console.log(data.data.metadata);
+          console.log(JSON.stringify(data.headers));
           console.log(data.data.results);
-          let universityArray = data.data.results.map(university => ({
+          return data.data.results.map(university => ({
             id: university.id,
             name: university["school.name"],
             city: university["school.city"],
@@ -26,11 +27,6 @@ export const Scorecard = {
             costAcademic: university["latest.cost.attendance.academic_year"],
             costProgram: university["latest.cost.attendance.program_year"]
           }));
-          console.log(universityArray);
-          let total = data.data.metadata.total;
-          console.log(total);
-          let results = [total, universityArray];
-          return results.flat();
         })
         .catch(error => console.error(error));
   },

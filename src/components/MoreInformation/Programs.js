@@ -29,7 +29,7 @@ export function Programs(props) {
         hasEarnings ? 
         <>
         <Row>
-            <Col>
+            <Col md={8}  className="earnings">
               <h3>Earnings and Student Loan Debt</h3>
               <p>The following is a list of programs that has data available for first year post graduation earnings and student loan debt. This data only tracks students who have received federal financial aid while attending this school. Students who received private loans are not included in this data. The cumulative debt (median or mean totals) includes only the loan dispursement amount and not any accrued interest.</p>
             </Col>

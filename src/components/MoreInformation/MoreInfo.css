@@ -8,7 +8,9 @@
   
 }
 
-
+.earnings {
+  margin: 0 auto;
+}
 #block {
   display: block;
   height: 100%;

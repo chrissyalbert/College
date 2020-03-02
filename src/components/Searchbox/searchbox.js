@@ -18,6 +18,7 @@ class Searchbox extends React.Component {
       missingDegree: null,
       results: {"_fields": ["id", "school.name", "school.school_url", "school.city", "school.state", "school.price_calculator_url", "latest.admissions.admission_rate.overall", "latest.student.size", "latest.cost.attendance.academic_year", "latest.cost.attendance.program_year"]},
       perPage: {"per_page": 21},
+      currentPage: {"page": 0},
       operating: {"school.operating": 1}
     }
     this.programDegree = false;
@@ -41,6 +42,10 @@ class Searchbox extends React.Component {
       name: {"school.name": value}
     });
     console.log(this.state);
+    let store = JSON.stringify(this.state);
+    console.log(store);
+    sessionStorage.setItem(`SearchboxState${this.props.activePage}`, store);
+    console.log(sessionStorage);
     this.props.searchSchools(this.state);
      
   }
@@ -105,10 +110,6 @@ class Searchbox extends React.Component {
       selectedPrograms: null,
       missingDegree: null
     });
-    let store = JSON.stringify(this.state);
-    console.log(store);
-    let backToObject = JSON.parse(store);
-    console.log(backToObject);
     this.props.searchSchools(this.state);
     }  
 
@@ -131,8 +132,9 @@ class Searchbox extends React.Component {
       event.preventDefault();
     } else {
       let store = JSON.stringify(this.state);
-      console.log(store);
-      //sessionStorage.setItem(store);
+   
+      sessionStorage.setItem(`SearchboxState${this.props.activePage}`, store);
+ 
       this.props.searchSchools(this.state);
       event.preventDefault();
     }
@@ -169,6 +171,11 @@ class Searchbox extends React.Component {
 export default Searchbox;
 
 /*
+
+ let store = JSON.stringify(this.state);
+    console.log(store);
+    let backToObject = JSON.parse(store);
+    console.log(backToObject);
 <div className="SearchUrban">
                   <Card.Text>
         Select the size of your ideal college town.

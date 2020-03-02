@@ -34,6 +34,7 @@ export class OLMap extends React.Component {
       coordinates = fromLonLat(coordinates);
       window.addEventListener('resize', this.updateDimensions);
       this.updateDimensions();
+      // eslint-disable-next-line
       const map = new Map({
         //The target will become the div id
         target: 'map',
