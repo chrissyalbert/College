@@ -13,7 +13,7 @@ export function Website(props) {
       setUrl(addHttp);
     }
   
-  }, [props.university.URL, url]);
+  }, []);
   return (
     <section className="University-website">
                       <h6>Website: </h6>
