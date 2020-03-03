@@ -15,12 +15,12 @@ export function Website(props) {
     }
   }, [props.university.URL]);
   return (
-    <section className="University-website">
+    <>
       <h6>Website: </h6>
         <Card.Text>
           <a href={url} target="_blank" rel="noopener noreferrer" className="urlStyle">{props.university.URL}</a>
         </Card.Text>    
-    </section>
+    </>
   );
 }
 
