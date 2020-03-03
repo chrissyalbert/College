@@ -11,8 +11,6 @@ export class SearchName extends React.Component {
   }
 
   handleSubmit(event) {
-    console.log(event.target.value);
-    console.log(this.inputRef.current.value);
     this.props.onNameChange(this.inputRef.current.value);
     event.preventDefault();
   }

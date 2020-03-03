@@ -33,7 +33,6 @@ export const Scorecard = {
 
   moreInfoSearch(obj) {
     let querystring = moreInfoQueryString(obj);
-    console.log(querystring);
       return axios.get(`${baseUrl}${querystring}`)
         .then(data => {
           //console.log(data.data.results);

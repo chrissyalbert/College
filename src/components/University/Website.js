@@ -5,14 +5,16 @@ export function Website(props) {
   const [url, setUrl] = useState(props.university.URL);
 
   useEffect(()=> {
-    if (url.indexOf("http://") === 0 || url.indexOf("https://") === 0) {
+    if (url) {
+      if (url.indexOf("http://") === 0 || url.indexOf("https://") === 0) {
       setUrl(props.university.URL)
+      }
+      else if (url.indexOf("http://") !== 0 || url.indexOf("https://") !== 0) {
+        let addHttp = `http://${url}`;
+        setUrl(addHttp);
+      }
     }
-     else if (url.indexOf("http://") !== 0 || url.indexOf("https://") !== 0) {
-      let addHttp = `http://${url}`;
-      setUrl(addHttp);
-    }
-  
+    // eslint-disable-next-line
   }, []);
   return (
     <section className="University-website">

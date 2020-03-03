@@ -165,15 +165,7 @@ export function PercentAid(props) {
   );
 }
 
-export function PriceCalculator(props) {
-  return (
-    <>
-    {props.university["School Price Calculator"] && <> 
-    <h6>School Price Calculator: </h6> <p><a href={props.university["School Price Calculator"]} target="_blank" rel="noopener noreferrer" className="urlStyle">{props.university["School Price Calculator"]}</a></p></>
-    }
-    </>
-  );
-}
+
 /*
 let transfer = props.university["Transfer Rate"];
   let style = {display: 'none'};
