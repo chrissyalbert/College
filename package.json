@@ -22,7 +22,7 @@
     "react-dom": "^16.11.0",
     "react-dropdown-select": "^3.6.8",
     "react-rangeslider": "^2.2.0",
-    "react-scripts": "^3.3.0",
+    "react-scripts": "^5.0.1",
     "sass": "^1.23.7",
     "typescript": "^3.7.3",
     "whatwg-fetch": "^3.0.0"
